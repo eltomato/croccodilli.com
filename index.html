@@ -1,14 +1,70 @@
 <html ng-app="croccodilli">
 	<head>
 		<title>Sharon e Tommaso - Croccodilli all'avventura</title>
-		<!--<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>-->
+		<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		
 		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/roundProgress.js"></script>
 		<script type="text/javascript" src="js/croccodilli.js"></script>
 	</head>
 	<body ng-controller="SiteController">
-		{{days()}}
-		{{hours()}}
-		{{minutes()}}
-		{{seconds()}}
+		<div class="container">
+			<div class="col-md-12">
+				<div round-progress
+					class="col-md-3"
+					max="200"
+					current="days"
+					color="#45ccce"
+					bgcolor="#eaeaea"
+					radius="125"
+					stroke="15"
+					rounded="true"
+					duration="800"
+					animation="easeOutBounce"
+					animation-delay="0">ciao</div>
+				<div round-progress
+					class="col-md-3"
+					max="24"
+					current="hours"
+					color="#45ccce"
+					bgcolor="#eaeaea"
+					radius="125"
+					stroke="15"
+					rounded="true"
+					duration="800"
+					animation="easeOutBounce"
+					animation-delay="0"></div>
+				<div round-progress
+					class="col-md-3"
+					max="60"
+					current="minutes"
+					color="#45ccce"
+					bgcolor="#eaeaea"
+					radius="125"
+					stroke="15"
+					rounded="true"
+					duration="800"
+					animation="easeOutBounce"
+					animation-delay="0"></div>
+				<div round-progress
+					class="col-md-3"
+					max="60"
+					current="seconds"
+					color="#45ccce"
+					bgcolor="#eaeaea"
+					radius="125"
+					stroke="15"
+					rounded="true"
+					duration="800"
+					animation="easeOutBounce"
+					animation-delay="0"></div>
+			</div>
+		{{days}}
+		{{hours}}
+		{{minutes}}
+		{{seconds}}
+		</div>
 	</body>
 </html>
