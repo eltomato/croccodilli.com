@@ -9,18 +9,35 @@
 				transform: translateY(-50%) translateX(-50%);
 				font-size: 37px;
 				text-align: center;
-				color: lightgray;
+				color: #eaeaea;
 			}
 
 			.countdown-container {
-				position: absolute;
-				margin-top: 50%;
-				transform: translateY(-100%);
+				/*position: absolute;*/
+				/*margin-top: 50%;*/
+				/*transform: translateY(-100%);*/
 			}
 
 			body {
-				background-image: url('img/back1.jpg');
-				background-size: cover;
+			}
+			@media screen and (min-width: 992px) {
+				body {
+					background-image: url('img/back2.jpg');
+					background-size: cover;
+				}
+			}
+
+			.header {
+				color: #cbae82;
+				margin-top: 5%;
+			}
+
+			.right{
+				float: right;
+			}
+
+			.who {
+				font-size: 20px;
 			}
 		</style>
 		<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
@@ -33,6 +50,12 @@
 	</head>
 	<body ng-controller="SiteController">
 		<div class="container">
+			<div class="header col-md-12">
+				<h1>
+					<i>Non smetteremo di eplorare. <br>Ed alla fine di tutto il nostro andare, ritorneremo al punto di partenza per conoscerlo per la prima volta.</i>
+				</h1>
+				<p class="who right">&minus;T. S. Eliot</p>
+			</div>
 			<div class="col-md-12 countdown-container">
 				<div class="col-md-3">
 					<div class="countdown-text">
