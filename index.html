@@ -1,6 +1,28 @@
 <html ng-app="croccodilli">
 	<head>
 		<title>Sharon e Tommaso - Croccodilli all'avventura</title>
+		<style>
+			.countdown-text {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translateY(-50%) translateX(-50%);
+				font-size: 37px;
+				text-align: center;
+				color: lightgray;
+			}
+
+			.countdown-container {
+				position: absolute;
+				margin-top: 50%;
+				transform: translateY(-100%);
+			}
+
+			body {
+				background-image: url('img/back1.jpg');
+				background-size: cover;
+			}
+		</style>
 		<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -11,60 +33,78 @@
 	</head>
 	<body ng-controller="SiteController">
 		<div class="container">
-			<div class="col-md-12">
-				<div round-progress
-					class="col-md-3"
-					max="200"
-					current="days"
-					color="#45ccce"
-					bgcolor="#eaeaea"
-					radius="125"
-					stroke="15"
-					rounded="true"
-					duration="800"
-					animation="easeOutBounce"
-					animation-delay="0">ciao</div>
-				<div round-progress
-					class="col-md-3"
-					max="24"
-					current="hours"
-					color="#45ccce"
-					bgcolor="#eaeaea"
-					radius="125"
-					stroke="15"
-					rounded="true"
-					duration="800"
-					animation="easeOutBounce"
-					animation-delay="0"></div>
-				<div round-progress
-					class="col-md-3"
-					max="60"
-					current="minutes"
-					color="#45ccce"
-					bgcolor="#eaeaea"
-					radius="125"
-					stroke="15"
-					rounded="true"
-					duration="800"
-					animation="easeOutBounce"
-					animation-delay="0"></div>
-				<div round-progress
-					class="col-md-3"
-					max="60"
-					current="seconds"
-					color="#45ccce"
-					bgcolor="#eaeaea"
-					radius="125"
-					stroke="15"
-					rounded="true"
-					duration="800"
-					animation="easeOutBounce"
-					animation-delay="0"></div>
+			<div class="col-md-12 countdown-container">
+				<div class="col-md-3">
+					<div class="countdown-text">
+						<span>{{days}} Giorni</span>
+					</div>
+					<div round-progress
+						max="200"
+						current="days"
+						color="#45ccce"
+						bgcolor="#eaeaea"
+						radius="125"
+						stroke="15"
+						rounded="true"
+						responsive="true"
+						duration="800"
+						animation="easeOutBounce"
+						animation-delay="0"></div>
+				</div>
+				<div class="col-md-3">
+					<div class="countdown-text">
+						<span>{{hours}} Ore</span>
+					</div>
+					<div round-progress
+						max="24"
+						current="hours"
+						color="#45ccce"
+						bgcolor="#eaeaea"
+						radius="125"
+						stroke="15"
+						responsive="true"
+						rounded="true"
+						duration="800"
+						animation="easeOutBounce"
+						animation-delay="0"></div>
+				</div>
+				<div class="col-md-3">
+					<div class="countdown-text">
+						<span>{{minutes}} Minuti</span>
+					</div>
+					<div round-progress
+						class="col-md-3"
+						max="60"
+						current="minutes"
+						color="#45ccce"
+						bgcolor="#eaeaea"
+						radius="125"
+						stroke="15"
+						responsive="true"
+						rounded="true"
+						duration="800"
+						animation="easeOutBounce"
+						animation-delay="0"></div>
+				</div>
+				<div class="col-md-3">
+					<div class="countdown-text">
+						<span>{{seconds}} Secondi</span>
+					</div>
+					<div round-progress
+						class="col-md-3"
+						max="60"
+						current="seconds"
+						color="#45ccce"
+						bgcolor="#eaeaea"
+						radius="125"
+						stroke="15"
+						responsive="true"
+						rounded="true"
+						duration="800"
+						animation="easeOutBounce"
+						animation-delay="0"></div>
+				</div>
 			</div>
-		{{days}}
-		{{hours}}
-		{{minutes}}
-		{{seconds}}
 		</div>
 	</body>
 </html>
