@@ -17,18 +17,23 @@
 }
 
 .countdown-container {
-	margin-top: 100%;
+	margin-top: 10%;
+}
+@media screen and (max-width: 992px) {
+	.countdown-container {
+		margin-top: 100%;
+	}
 }
 
 body {
-	background-image: url('img/back3.jpg');
+	background-image: url('img/back2.jpg');
 	background-size: cover;
-	background-position-x: center; 
 }
-@media screen and (min-width: 992px) {
+@media screen and (max-width: 992px) {
 	body {
-		background-image: url('img/back2.jpg');
+		background-image: url('img/back3.jpg');
 		background-size: cover;
+		background-position-x: center; 
 	}
 }
 
