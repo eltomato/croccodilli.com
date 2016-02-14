@@ -28,6 +28,7 @@
 body {
 	background-image: url('img/back2.jpg');
 	background-size: cover;
+	font-family: 'Shadows Into Light', cursive;
 }
 @media screen and (max-width: 992px) {
 	body {
@@ -39,11 +40,10 @@ body {
 
 .header {
 	margin-top: 40%;
-	color: white;
+	color: #eaeaea;
 }
 @media screen and (min-width: 992px) {
 	.header {
-		color: #cbae82;
 		margin-top: 5%;
 	}
 }
