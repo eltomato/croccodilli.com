@@ -28,13 +28,14 @@
 body {
 	background-image: url('img/back2.jpg');
 	background-size: cover;
+	background-repeat: no-repeat;
 	font-family: 'Shadows Into Light', cursive;
 }
 @media screen and (max-width: 992px) {
 	body {
 		background-image: url('img/back3.jpg');
 		background-size: cover;
-		background-position-x: center; 
+		background-position-x: center;
 	}
 }
 
