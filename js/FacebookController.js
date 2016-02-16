@@ -48,13 +48,15 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 
 	$scope.savePost = function() {
 		console.log($scope.commento);
-		postService.savePost({
-			identifier: Math.random().toString(36).slice(2),
-			post: {
-				poster: $scope.name,
-				posterImageUrl: $scope.imageUrl,
-				content: $scope.commento
-			}
-		});
+		if(!angular.isUndefined($scope.commento) && $scope.commento != null && $scope.commento.length != 0) {
+			postService.savePost({
+				identifier: Math.random().toString(36).slice(2),
+				post: {
+					poster: $scope.name,
+					posterImageUrl: $scope.imageUrl,
+					content: $scope.commento
+				}
+			});
+		}
 	};
 }]);

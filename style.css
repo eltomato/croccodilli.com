@@ -60,8 +60,12 @@ body {
 	text-align: center;
 }
 
+textarea {
+	font-size: 20px;
+}
+
 .post {
-	
+	font-size: 20px;
 }
 
 .right{
