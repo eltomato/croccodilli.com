@@ -1,7 +1,11 @@
 
 croccodilli.controller('FacebookController', ['$scope', function($scope) {
 
-	FB.getLoginStatus($scope.callbackStatus);
+	FB.getLoginStatus(function(response) {
+		$scope.apply(function() {
+			$scope.callbackStatus(response);
+		});
+	});
 	
 	$scope.loginFacebook = function() {
 		FB.login(function(response) {
