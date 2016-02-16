@@ -10,6 +10,9 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	$scope.loginFacebook = function() {
 		FB.login(function(response) {
 			console.log(response);
+			$scope.$apply(function() {
+				$scope.callbackStatus(response);
+			});
 		}, {scope: 'public_profile,email'});
 	};
 
@@ -56,6 +59,8 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 					posterImageUrl: $scope.imageUrl,
 					content: $scope.commento
 				}
+			}).success(function() {
+				$scope.$broadcast('posts.added');
 			});
 		}
 	};

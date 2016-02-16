@@ -20,9 +20,9 @@
 		<script type="text/javascript" src="js/FacebookController.js"></script>
 		<script type="text/javascript" src="js/PostsController.js"></script>
 	</head>
-	<body ng-controller="SiteController">
+	<body ng-controller="FacebookController">
 		<div class="first-row">
-			<div class="container">
+			<div class="container" ng-controller="SiteController">
 				<div class="header col-md-12">
 					<h1>
 						<i>Non smetteremo di eplorare. <br>Ed alla fine di tutto il nostro andare, ritorneremo al punto di partenza per conoscerlo per la prima volta.</i>
@@ -104,8 +104,7 @@
 			</div>
 		</div>
 		<div>
-			<div class="container"
-				ng-controller="FacebookController">
+			<div class="container">
 				<div class="col-md-12 do-post-header">
 					<h1>Pensiamoci! &lt;3</h1>
 				</div>
