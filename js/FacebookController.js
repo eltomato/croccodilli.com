@@ -38,7 +38,6 @@ croccodilli.controller('FacebookController', ['$scope', function($scope) {
 				console.log(response);
 			}
 		});
-	);
 	};
 
 	$scope.getName = function() {
