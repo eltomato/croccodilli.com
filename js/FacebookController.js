@@ -33,7 +33,7 @@ croccodilli.controller('FacebookController', ['$scope', function($scope) {
 				$scope.name = response.name;
 			});
 		});
-		FB.api('/'+$scope.userId+'/picture?redirect=false', function (response) {
+		FB.api('/'+$scope.userId+'/picture', function (response) {
 			if (response && !response.error) {
 				console.log(response);
 			}
