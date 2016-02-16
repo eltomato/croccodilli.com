@@ -33,4 +33,11 @@ croccodilli.controller('FacebookController', ['$scope', function($scope) {
 			});
 		});
 	};
+
+	$scope.getName = function() {
+		if($scope.isLogged) {
+			return $scope.name;
+		}
+		return "Login con Facebook";
+	};
 }]);
