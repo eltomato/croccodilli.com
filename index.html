@@ -113,11 +113,14 @@
 				<div class="col-md-12 row-button">
 					<div class="row col-md-3 col-md-offset-9 btn btn-default"
 						ng-if="isLogged">
+						<img ng-src="{{imageUrl}}" class="profile-picture">
 						Lascia commento come {{getName()}}
 					</div>
 					<div class="row col-md-3 col-md-offset-9 btn btn-default"
 						ng-if="!isLogged"
-						ng-click="loginFacebook()">Loggati con Facebook per commentare</div>
+						ng-click="loginFacebook()">
+						Loggati con Facebook per commentare
+					</div>
 				</div>
 			</div>
 		</div>

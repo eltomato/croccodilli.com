@@ -34,9 +34,11 @@ croccodilli.controller('FacebookController', ['$scope', function($scope) {
 			});
 		});
 		FB.api('/'+$scope.userId+'/picture', function (response) {
-			if (response && !response.error) {
-				console.log(response);
-			}
+			$scope.$apply(function() {
+				if (response && !response.error) {
+					$scope.imageUrl = response.data.url;
+				}
+			});
 		});
 	};
 
