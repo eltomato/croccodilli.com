@@ -17,6 +17,7 @@ croccodilli.controller('FacebookController', ['$scope', function($scope) {
 		console.log(response);
 		if (response.status === 'connected') {
 			$scope.isLogged = true;
+			$scope.userId = response.userID;
 			$scope.getFacebookData();
 		} else if (response.status === 'not_authorized') {
 			$scope.isLogged = false;
@@ -32,6 +33,12 @@ croccodilli.controller('FacebookController', ['$scope', function($scope) {
 				$scope.name = response.name;
 			});
 		});
+		FB.api('/'+$scope.userId+'/picture?redirect=false', function (response) {
+			if (response && !response.error) {
+				console.log(response);
+			}
+		};
+	);
 	};
 
 	$scope.getName = function() {
