@@ -1,3 +1,18 @@
+.first-row {
+	width: 100%;
+	height: 100%;
+	background-image: url('img/back2.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+@media screen and (max-width: 992px) {
+	.first-row {
+		background-image: url('img/back3.jpg');
+		background-size: cover;
+		background-position-x: center;
+	}
+}
+
 .countdown-text {
 	position: absolute;
 	top: 50%;
@@ -26,18 +41,9 @@
 }
 
 body {
-	background-image: url('img/back2.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
 	font-family: 'Shadows Into Light', cursive;
 }
-@media screen and (max-width: 992px) {
-	body {
-		background-image: url('img/back3.jpg');
-		background-size: cover;
-		background-position-x: center;
-	}
-}
+
 
 .header {
 	margin-top: 40%;
@@ -49,10 +55,22 @@ body {
 	}
 }
 
+.other-header {
+	text-align: center;
+}
+
 .right{
 	float: right;
 }
 
 .who {
 	font-size: 20px;
+}
+
+.row-button {
+	margin-top: 20px;
+}
+
+.footer {
+	height: 100px;
 }
