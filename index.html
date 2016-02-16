@@ -8,15 +8,21 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="style.css">
 		
+		<script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
+		<script type="text/javascript" src="js/fb.js"></script>
 		<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		
 		<script type="text/javascript" src="js/angular.min.js"></script>
 		<script type="text/javascript" src="js/roundProgress.js"></script>
 		<script type="text/javascript" src="js/croccodilli.js"></script>
+		<script type="text/javascript" src="js/FacebookController.js"></script>
 	</head>
 	<body ng-controller="SiteController">
 		<div class="container">
+			<div class="col-md-12" ng-controller="FacebookController">
+				<div class="btn btn-default" ng-click="loginFacebook()">Login With Facebook</div>
+			</div>
 			<div class="header col-md-12">
 				<h1>
 					<i>Non smetteremo di eplorare. <br>Ed alla fine di tutto il nostro andare, ritorneremo al punto di partenza per conoscerlo per la prima volta.</i>
