@@ -112,11 +112,11 @@
 				</div>
 				<div class="col-md-12 row-button">
 					<div class="row col-md-3 col-md-offset-9 btn btn-default"
-						ng-if="logged">
+						ng-if="isLogged">
 						Lascia commento come {{getName()}}
 					</div>
 					<div class="row col-md-3 col-md-offset-9 btn btn-default"
-						ng-if="!logged"
+						ng-if="!isLogged"
 						ng-click="loginFacebook()">Loggati con Facebook per commentare</div>
 				</div>
 			</div>
