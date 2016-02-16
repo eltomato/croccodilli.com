@@ -1,5 +1,5 @@
 
-croccodilli.controller('FacebookController', ['$scope', function($scope) {
+croccodilli.controller('FacebookController', ['$scope', 'postService', function($scope, postService) {
 
 	FB.getLoginStatus(function(response) {
 		$scope.$apply(function() {
@@ -44,5 +44,16 @@ croccodilli.controller('FacebookController', ['$scope', function($scope) {
 
 	$scope.getName = function() {
 		return $scope.name;
+	};
+
+	$scope.savePost = function() {
+		console.log($scope.commento);
+		postService.savePost({
+			identifier: Math.random().toString(36).slice(2),
+			post: {
+				poster: $scope.name,
+				content: $scope.commento
+			}
+		});
 	};
 }]);

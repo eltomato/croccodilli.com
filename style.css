@@ -4,6 +4,7 @@
 	background-image: url('img/back2.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
+	min-height: 998px;
 }
 @media screen and (max-width: 992px) {
 	.first-row {

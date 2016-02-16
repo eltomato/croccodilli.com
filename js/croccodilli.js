@@ -1,4 +1,10 @@
-var croccodilli = angular.module('croccodilli', ['angular-svg-round-progress']);
+
+angular.module('croccodilli.services', []);
+
+var croccodilli = angular.module('croccodilli', [
+	'croccodilli.services',
+	'angular-svg-round-progress'
+]);
 
 croccodilli.controller('SiteController', ['$scope', '$interval', function($scope, $interval) {
 	$scope.currentMillis = new Date().getTime();
@@ -63,5 +69,4 @@ croccodilli.controller('SiteController', ['$scope', '$interval', function($scope
 	}, 1000);
 
 	$scope.updateTime();
-
 }]);
