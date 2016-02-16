@@ -17,7 +17,7 @@ croccodilli.controller('FacebookController', ['$scope', function($scope) {
 		console.log(response);
 		if (response.status === 'connected') {
 			$scope.isLogged = true;
-			$scope.userId = response.userID;
+			$scope.userId = response.authResponse.userID;
 			$scope.getFacebookData();
 		} else if (response.status === 'not_authorized') {
 			$scope.isLogged = false;
