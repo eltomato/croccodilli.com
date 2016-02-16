@@ -1,5 +1,5 @@
 // This is called with the results from from FB.getLoginStatus().
-function statusChangeCallback(response) {
+/*function statusChangeCallback(response) {
 	console.log('statusChangeCallback');
 	console.log(response);
 	// The response object is returned with a status field that lets the
@@ -17,7 +17,7 @@ function statusChangeCallback(response) {
 		// they are logged into this app or not.
 		document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
 	}
-}
+}*/
 
 // This function is called when someone finishes with the Login
 // Button.  See the onlogin handler attached to it in the sample
@@ -29,12 +29,6 @@ function checkLoginState() {
 };
 
 window.fbAsyncInit = function() {
-	/*FB.init({
-		appId: '{your-app-id}',
-		cookie: true,  // enable cookies to allow the server to access the session
-		xfbml: false,  // parse social plugins on this page
-		version: 'v2.2' // use version 2.2
-	});*/
 	FB.init({
 		appId      : '120480261673611',
 		xfbml      : true,
@@ -53,27 +47,8 @@ window.fbAsyncInit = function() {
 	//
 	// These three cases are handled in the callback function.
 
-	FB.getLoginStatus(function(response) {
+	/*FB.getLoginStatus(function(response) {
 		statusChangeCallback(response);
-	});
+	});*/
 
-};
-
-// Load the SDK asynchronously
-/*(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/en_US/sdk.js";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));*/
-
-// Here we run a very simple test of the Graph API after login is
-// successful.  See statusChangeCallback() for when this call is made.
-function testAPI() {
-	console.log('Welcome!  Fetching your information.... ');
-	FB.api('/me', function(response) {
-		console.log('Successful login for: ' + response.name);
-		document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-	});
 };
