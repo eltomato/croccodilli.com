@@ -52,6 +52,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 			identifier: Math.random().toString(36).slice(2),
 			post: {
 				poster: $scope.name,
+				posterImageUrl: $scope.imageUrl,
 				content: $scope.commento
 			}
 		});

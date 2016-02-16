@@ -18,6 +18,7 @@
 		<script type="text/javascript" src="js/croccodilli.js"></script>
 		<script type="text/javascript" src="js/PostService.js"></script>
 		<script type="text/javascript" src="js/FacebookController.js"></script>
+		<script type="text/javascript" src="js/PostsController.js"></script>
 	</head>
 	<body ng-controller="SiteController">
 		<div class="first-row">
@@ -105,7 +106,7 @@
 		<div>
 			<div class="container"
 				ng-controller="FacebookController">
-				<div class="col-md-12 other-header">
+				<div class="col-md-12 do-post-header">
 					<h1>Pensiamoci! &lt;3</h1>
 				</div>
 				<div class="col-md-12">
@@ -122,6 +123,21 @@
 						ng-if="!isLogged"
 						ng-click="loginFacebook()">
 						Loggati con Facebook per commentare
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="container"
+				ng-controller="PostsController">
+				<div class="col-md-12 post"
+					ng-repeat="post in posts">
+					<div class="col-md-2">
+						<img ng-src="{{post.posterImageUrl}}" class="profile-picture">
+						<div>{{post.poster}}</div>
+					</div>
+					<div class="col-md-10">
+						{{post.content}}
 					</div>
 				</div>
 			</div>
