@@ -31,6 +31,6 @@ croccodilli.controller('FacebookController', ['$scope', function($scope) {
 			$scope.$apply(function() {
 				$scope.name = response.name;
 			});
-		};
+		});
 	};
 }]);
