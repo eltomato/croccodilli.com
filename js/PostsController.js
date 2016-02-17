@@ -4,7 +4,7 @@ croccodilli.controller('PostsController', ['$scope', 'postService', function($sc
 	$scope.posts = [];
 
 	$scope.loadPosts = function() {
-		postService.getPosts().success(function(posts) {
+		postService.getPosts().then(function(posts) {
 			for(var i=0; i<posts.length; i++) {
 				var post = JSON.parse(posts[i].value);
 				$scope.posts.push({
