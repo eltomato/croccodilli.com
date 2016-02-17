@@ -14,6 +14,7 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 				}, {
 					"api_key": "br_24567_318823f6f4e8ac9b7b45d6beac65627f82047241"
 				}, function(res) {
+					console.log(res);
 					var posts = [];
 					if(!angular.isUndefined(res.params.data)) {
 						for(var i=0; i<res.params.data.length; i++) {
@@ -39,6 +40,7 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 				},{
 					"api_key": "br_24567_c5297836d2d26f1c73f111fff03f51a4478553e5"
 				}, function(res) {
+					console.log(res);
 					if(res.params && res.params.status) {
 						defer.resolve(true);
 					} else {
