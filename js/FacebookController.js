@@ -59,7 +59,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 					posterImageUrl: $scope.imageUrl,
 					content: $scope.commento
 				}
-			}).success(function() {
+			}).then(function() {
 				$scope.$broadcast('posts.added');
 			});
 		}
