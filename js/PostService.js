@@ -10,7 +10,7 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 				"read-worksheet-google-sheets", {
 					"file_id": file_id,
 					"worksheet_id": worksheet_id,
-					"has_header": false
+					"has_header": true
 				}, {
 					"api_key": "br_24567_318823f6f4e8ac9b7b45d6beac65627f82047241"
 				}, function(res) {
@@ -19,9 +19,9 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 					if(!angular.isUndefined(res.params.data)) {
 						for(var i=0; i<res.params.data.length; i++) {
 							posts.push({
-								poster: res.params.data[i][0],
-								posterImageUrl: res.params.data[i][1],
-								content: res.params.data[i][2]
+								poster: res.params.data[i].poster,
+								posterImageUrl: res.params.data[i].posterImageUrl,
+								content: res.params.data[i].content
 							});
 						}
 					}

@@ -1,14 +1,14 @@
 
 croccodilli.controller('FacebookController', ['$scope', 'postService', function($scope, postService) {
 
-	FB.getLoginStatus(function(response) {
+	window.FB && FB.getLoginStatus(function(response) {
 		$scope.$apply(function() {
 			$scope.callbackStatus(response);
 		});
 	});
 	
 	$scope.loginFacebook = function() {
-		FB.login(function(response) {
+		window.FB && FB.login(function(response) {
 			console.log(response);
 			$scope.$apply(function() {
 				$scope.callbackStatus(response);
@@ -30,13 +30,13 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	};
 
 	$scope.getFacebookData = function() {
-		FB.api('/me', function(response) {
+		window.FB && FB.api('/me', function(response) {
 			console.log(response);
 			$scope.$apply(function() {
 				$scope.name = response.name;
 			});
 		});
-		FB.api('/'+$scope.userId+'/picture', function (response) {
+		window.FB && FB.api('/'+$scope.userId+'/picture', function (response) {
 			$scope.$apply(function() {
 				if (response && !response.error) {
 					$scope.imageUrl = response.data.url;
