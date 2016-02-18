@@ -5,6 +5,7 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	min-height: 998px;
+	border-bottom:  1px solid lightgray;
 }
 @media screen and (max-width: 992px) {
 	.first-row {
