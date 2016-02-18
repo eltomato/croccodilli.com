@@ -34,11 +34,16 @@
 }
 
 .countdown-container {
-	margin-top: 10%;
+	margin-top: 5%;
 }
 @media screen and (max-width: 992px) {
 	.countdown-container {
 		margin-top: 100%;
+	}
+}
+@media screen and (max-width: 992px) and (orientation: landscape) {
+	.countdown-container {
+		margin-top: 40%;
 	}
 }
 

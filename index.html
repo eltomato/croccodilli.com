@@ -139,13 +139,13 @@
 					<textarea ng-model="commento" style="width: 100%; height: 150px;" placeholder="Ci stavi pensando? Se ci scrivi ti risponderemo di sicuro...forse."></textarea>
 				</div>
 				<div class="col-md-12 row-button">
-					<div class="row col-md-3 col-md-offset-9 btn btn-default"
+					<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
 						ng-if="isLogged"
 						ng-click="savePost()">
 						<img ng-src="{{imageUrl}}" class="profile-picture">
 						Lascia commento come {{getName()}}
 					</div>
-					<div class="row col-md-3 col-md-offset-9 btn btn-default"
+					<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
 						ng-if="!isLogged"
 						ng-click="loginFacebook()">
 						Chi sei?
