@@ -56,6 +56,14 @@ body {
 	}
 }
 
+.whatsapp-header {
+	text-align: center;
+}
+
+.whatsapp-number {
+	font-size: 18px;
+}
+
 .do-post-header {
 	text-align: center;
 }
