@@ -25,6 +25,7 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 							});
 						}
 					}
+					posts.reverse();
 					deferred.resolve(posts);
 				}
 			);
