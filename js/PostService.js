@@ -17,12 +17,35 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 					console.log(res);
 					var posts = [];
 					if(!angular.isUndefined(res.params.data)) {
-						for(var i=0; i<res.params.data.length; i++) {
-							posts.push({
-								poster: res.params.data[i].poster,
-								posterImageUrl: res.params.data[i].posterImageUrl,
-								content: res.params.data[i].content
-							});
+						var rawPosts = res.params.data;
+						var mappedPosts = {};
+						for(var i=0; i<rawPosts.length; i++) {
+							if(rawPosts[i].refer && rawPosts[i].refer.length > 0) {
+								posts[mappedPosts[rawPosts[i].refer]].referred.push({
+									identifier: rawPosts[i].identifier,
+									refer: rawPosts[i].refer,
+									email: rawPosts[i].email,
+									poster: rawPosts[i].poster,
+									posterImageUrl: rawPosts[i].posterImageUrl,
+									content: rawPosts[i].content
+								});
+							} else {
+								var post = {
+									post: {
+										identifier: rawPosts[i].identifier,
+										refer: rawPosts[i].refer,
+										email: rawPosts[i].email,
+										poster: rawPosts[i].poster,
+										posterImageUrl: rawPosts[i].posterImageUrl,
+										content: rawPosts[i].content
+									},
+									referred: []
+								};
+								posts.push(post);
+								mappedPosts[rawPosts[i].identifier] = posts.indexOf(post);
+							}
+							console.log(posts);
+							console.log(mappedPosts);
 						}
 					}
 					posts.reverse();
