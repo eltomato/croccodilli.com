@@ -4,8 +4,10 @@ croccodilli.controller('PostsController', ['$scope', 'postService', function($sc
 	$scope.groupedPosts = [];
 
 	$scope.loadPosts = function() {
+		$scope.loadingPosts = true;
 		postService.getPosts().then(function(posts) {
 			$scope.groupedPosts = posts;
+			$scope.loadingPosts = false;
 		});
 	};
 

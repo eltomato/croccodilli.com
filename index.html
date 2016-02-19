@@ -161,6 +161,11 @@
 		<div>
 			<div class="container"
 				ng-controller="PostsController">
+				<div ng-if="loadingPosts"
+					class="col-md-12 col-xs-12 post center"
+					ng-class="{'bottom-ceruleo-dashed': groupedPosts.length>0}">
+					<i class="fa fa-spinner fa-spin"></i>
+				</div>
 				<div class="col-md-12 col-xs-12 post"
 					ng-class="{'bottom-ceruleo-dashed': !$last}"
 					ng-repeat="groupedPost in groupedPosts">

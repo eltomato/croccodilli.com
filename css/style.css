@@ -128,3 +128,7 @@ textarea {
 .bottom-ceruleo-dashed {
 	border-bottom: 1px dashed #45ccce;
 }
+
+.center {
+	text-align: center;
+}
