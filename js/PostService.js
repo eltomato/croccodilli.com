@@ -60,7 +60,7 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 				"append-to-google-spreadsheet", {
 					"file_id": file_id,
 					"worksheet_id": worksheet_id,
-					"values": [[post.poster, post.posterImageUrl, post.content]]
+					"values": [[post.identifier, post.refer, post.mail, post.poster, post.posterImageUrl, post.content]]
 				},{
 					"api_key": "br_24567_c5297836d2d26f1c73f111fff03f51a4478553e5"
 				}, function(res) {
