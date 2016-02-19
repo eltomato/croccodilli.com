@@ -50,7 +50,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	};
 
 	$scope.savePost = function() {
-		console.log($scope.commento);
+		$scope.posting = true;
 		if(!angular.isUndefined($scope.commento) && $scope.commento != null && $scope.commento.length != 0) {
 			postService.savePost({
 				identifier: Math.random().toString(36).slice(2),
@@ -61,6 +61,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 				content: $scope.commento
 			}).then(function() {
 				$scope.commento = '';
+				$scope.posting = false;
 				$scope.$broadcast('posts.added');
 			});
 		}
