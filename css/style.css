@@ -136,3 +136,11 @@ textarea {
 .full-width {
 	width: 100%;
 }
+
+.pointer {
+	cursor: pointer;
+}
+
+.badge {
+	background-color: lightgray;
+}

@@ -13,6 +13,8 @@
 		
 		<script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
 		<script type="text/javascript" src="js/fb.js"></script>
+		<script type="text/javascript" src="js/moment.min.js"></script>
+		<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
 		<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/blockspring.js"></script>
@@ -23,6 +25,7 @@
 		<script type="text/javascript" src="js/PostService.js"></script>
 		<script type="text/javascript" src="js/FacebookController.js"></script>
 		<script type="text/javascript" src="js/PostsController.js"></script>
+		<script type="text/javascript" src="js/WatchController.js"></script>
 	</head>
 	<body ng-controller="FacebookController">
 		<div class="first-row">
@@ -177,18 +180,45 @@
 							class="profile-picture">
 					</div>
 					<div class="col-md-10 col-xs-10">
-						<small><b>{{groupedPost.post.poster}}</b></small><br>
+						<small>
+							<b>{{groupedPost.post.poster}}</b>
+							<span ng-controller="WatchController"
+								ng-click="toggleTime()"
+								class="badge pointer">
+								<i class="fa fa-clock-o"></i> IT
+								<span ng-show="expanded">{{groupedPost.post.date_it}}</span>
+							</span>
+							<span ng-controller="WatchController"
+								ng-click="toggleTime()"
+								class="badge pointer">
+								<i class="fa fa-clock-o"></i> AU 
+								<span ng-show="expanded">{{groupedPost.post.date_au}}</span>
+							</span>
+						</small><br>
 						{{groupedPost.post.content}}<i class="fa fa-reply"></i>
 					</div>
 					<div ng-repeat="post in groupedPost.referred"
 						class="col-md-12 col-xs-12 left-ceruleo sub-post">
 						<div class="col-md-1 col-xs-1 row">
 							<img ng-src="{{post.posterImageUrl}}"
-								style="float: right;"
-								class="profile-picture">
+								class="profile-picture pull-right">
 						</div>
 						<div class="col-md-10 col-xs-10">
-							<small><b>{{post.poster}}</b></small><br>
+							<small>
+								<b>{{post.poster}}</b>
+								<span ng-controller="WatchController"
+									ng-click="toggleTime()"
+									class="badge pointer">
+									<i class="fa fa-clock-o"></i> IT
+									<span ng-show="expanded">{{post.date_it}}</span>
+								</span>
+								<span ng-controller="WatchController"
+									ng-click="toggleTime()"
+									class="badge pointer">
+									<i class="fa fa-clock-o"></i> AU 
+									<span ng-show="expanded">{{post.date_au}}</span>
+								</span>
+							</small><br>
 							{{post.content}}
 						</div>
 					</div>
