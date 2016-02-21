@@ -68,7 +68,6 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 				},{
 					"api_key": "br_24567_c5297836d2d26f1c73f111fff03f51a4478553e5"
 				}, function(res) {
-					console.log(res);
 					if(res.params && res.params.status) {
 						defer.resolve({
 							identifier: identifier,
