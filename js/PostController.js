@@ -16,7 +16,6 @@ croccodilli.controller('PostController', ['$scope', 'postService', function($sco
 
 	$scope.saveSubPost = function(groupedPost) {
 		if(!$scope.subposting) {
-			$scope.subposting = true;
 			if(!angular.isUndefined($scope.subpost.commento) 
 				&& $scope.subpost.commento != null 
 				&& $scope.subpost.commento.length != 0
@@ -24,6 +23,7 @@ croccodilli.controller('PostController', ['$scope', 'postService', function($sco
 				&& !angular.isUndefined(groupedPost.post)
 				&& groupedPost.post != null
 				&& groupedPost.post.identifier) {
+				$scope.subposting = true;
 				postService.savePost({
 					refer: groupedPost.post.identifier,
 					mail: '',

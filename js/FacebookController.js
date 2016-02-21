@@ -51,11 +51,13 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 
 	$scope.savePost = function() {
 		if(!$scope.posting) {
-			$scope.posting = true;
-			if(!angular.isUndefined($scope.commento) && $scope.commento != null && $scope.commento.length != 0) {
+			if(!angular.isUndefined($scope.commento)
+				&& $scope.commento != null
+				&& $scope.commento.length != 0) {
+				$scope.posting = true;
 				postService.savePost({
 					refer: '',
-					mail: '',
+					mail: $scope.email,
 					poster: $scope.name,
 					posterImageUrl: $scope.imageUrl,
 					content: $scope.commento

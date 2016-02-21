@@ -154,17 +154,30 @@
 						placeholder="Ci stavi pensando? Se ci scrivi ti risponderemo di sicuro...forse."></textarea>
 				</div>
 				<div class="col-md-12 row-button">
-					<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
+					<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
 						ng-if="isLogged"
 						ng-disabled="posting"
 						ng-click="savePost()">
 						<span>Invia <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
 						<i ng-show="posting" class="fa fa-spinner fa-spin"></i>
 					</div>
-					<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
+					<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
 						ng-if="!isLogged"
 						ng-click="loginFacebook()">
 						Invia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
+					</div>
+					<div class="post-email col-md-3 col-xs-3">
+						<i class="color-ceruleo">oppure</i> utilizza
+						<input type="email"
+							ng-model="email"
+							ng-disabled="posting"
+							placeholder="mia@mail.it" />
+					</div>
+					<div class="col-md-1 col-xs-1 btn btn-default"
+						ng-disabled="email=='' || email==null || posting"
+						ng-click="savePost()">
+						Invia
+						<i ng-show="posting" class="fa fa-spinner fa-spin"></i>
 					</div>
 				</div>
 			</div>
@@ -182,13 +195,13 @@
 					ng-class="{'bottom-ceruleo-dashed': !$last}"
 					ng-repeat="groupedPost in groupedPosts">
 					<div class="col-md-1 col-xs-1 row">
-						<img ng-src="{{groupedPost.post.posterImageUrl}}"
+						<img ng-src="{{groupedPost.post.posterImageUrl||'img/anonymous.png'}}"
 							style="float: right;"
 							class="profile-picture">
 					</div>
 					<div class="col-md-10 col-xs-10">
 						<small>
-							<b>{{groupedPost.post.poster}}</b>
+							<b>{{groupedPost.post.poster||groupedPost.post.email}}</b>
 							<span ng-controller="WatchController"
 								ng-click="toggleTime()"
 								class="badge pointer">
@@ -215,7 +228,7 @@
 						</div>
 						<div class="col-md-10 col-xs-10">
 							<small>
-								<b>{{post.poster}}</b>
+								<b>{{post.poster||post.email}}</b>
 								<span ng-controller="WatchController"
 									ng-click="toggleTime()"
 									class="badge pointer">

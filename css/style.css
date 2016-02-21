@@ -146,3 +146,11 @@ textarea {
 .badge {
 	background-color: lightgray;
 }
+
+.post-email {
+	padding: 6px 12px;
+}
+
+input.ng-invalid-email {
+	border: 1px solid red;
+}
