@@ -34,10 +34,10 @@ croccodilli.controller('PostController', ['$scope', 'postService', function($sco
 					groupedPost.referred.push(savedPost);
 					$scope.commento = '';
 					$scope.subposting = false;
-					$scope.hideReply();
 					if($scope.subpost.email) {
 						$scope.$emit('do.login', $scope.subpost.email);
 					}
+					$scope.hideReply();
 				});
 			}
 		}
