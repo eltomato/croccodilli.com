@@ -100,10 +100,14 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	$scope.doLogout = function() {
 		if($scope.email) {
 			$scope.setCookie($scope.cookieName, $scope.email, -1);
+			$scope.isLogged = false;
 		} else {
-			window.FB && FB.logout();
+			window.FB && FB.logout(function(response) {
+				$scope.$apply(function() {
+					$scope.isLogged = false;
+				});
+			});
 		}
-		$scope.isLogged = false;
 	};
 
 	$scope.email = $scope.getCookie($scope.cookieName);
