@@ -15,9 +15,9 @@ croccodilli.controller('PostController', ['$scope', 'postService', function($sco
 
 	$scope.saveSubPost = function(parentPost) {
 		$scope.subposting = true;
-		if(!angular.isUndefined($scope.commento) 
-			&& $scope.commento != null 
-			&& $scope.commento.length != 0
+		if(!angular.isUndefined($scope.subpost.commento) 
+			&& $scope.subpost.commento != null 
+			&& $scope.subpost.commento.length != 0
 			&& !angular.isUndefined(parentPost)
 			&& parentPost != null
 			&& parentPost.identifier) {
@@ -26,7 +26,7 @@ croccodilli.controller('PostController', ['$scope', 'postService', function($sco
 				mail: '',
 				poster: $scope.name,
 				posterImageUrl: $scope.imageUrl,
-				content: $scope.commento
+				content: $scope.subpost.commento
 			}).then(function() {
 				$scope.commento = '';
 				$scope.subposting = false;
