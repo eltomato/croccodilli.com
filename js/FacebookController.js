@@ -50,7 +50,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 					$scope.email = response.data.email;
 				}
 			});
-		});
+		}, {scope: 'public_profile,email'});
 	};
 
 	$scope.getName = function() {
