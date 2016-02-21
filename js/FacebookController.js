@@ -35,7 +35,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 			$scope.$apply(function() {
 				$scope.name = response.name;
 			});
-		});
+		}, {scope: 'public_profile,email'});
 		window.FB && FB.api('/'+$scope.userId+'/picture', function (response) {
 			$scope.$apply(function() {
 				if (response && !response.error) {
