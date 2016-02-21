@@ -1,12 +1,9 @@
 
 croccodilli.controller('FacebookController', ['$scope', 'postService', function($scope, postService) {
 
-	window.FB && FB.getLoginStatus(function(response) {
-		$scope.$apply(function() {
-			$scope.callbackStatus(response);
-		});
-	});
-	
+	$scope.cookieName = "croccodilli";
+	$scope.cookieDurationDays = 2000;
+
 	$scope.loginFacebook = function() {
 		window.FB && FB.login(function(response) {
 			console.log(response);
@@ -46,7 +43,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	};
 
 	$scope.getName = function() {
-		return $scope.name;
+		return $scope.name || $scope.email;
 	};
 
 	$scope.savePost = function() {
@@ -66,7 +63,48 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 					$scope.posting = false;
 					$scope.$broadcast('posts.added');
 				});
+				if($scope.email) {
+					$scope.doLogin();
+				}
 			}
 		}
 	};
+
+	$scope.doLogin = function() {
+		$scope.setCookie($scope.cookieName, $scope.email, $scope.cookieDurationDays);
+		$scope.isLogged = true;
+	};
+
+	$scope.setCookie = function(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires="+d.toUTCString();
+		document.cookie = cname + "=" + cvalue + "; " + expires;
+	}
+
+	$scope.getCookie = function(cname) {
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0; i<ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0)  {
+				return c.substring(name.length,c.length);
+			}
+		}
+		return "";
+	};
+
+	$scope.email = $scope.getCookie($scope.cookieName);
+	if($scope.email == "") {
+		window.FB && FB.getLoginStatus(function(response) {
+			$scope.$apply(function() {
+				$scope.callbackStatus(response);
+			});
+		});
+	} else {
+		$scope.isLogged = true;
+	}
 }]);

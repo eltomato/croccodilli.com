@@ -155,3 +155,14 @@ textarea {
 input.ng-invalid-email {
 	border: 1px solid red;
 }
+
+.profile {
+	position: fixed;
+	top: 5px;
+	right: 5px;
+	padding: 5px;
+	background-color: #45ccce;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}

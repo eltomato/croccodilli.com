@@ -29,6 +29,10 @@
 		<script type="text/javascript" src="js/WatchController.js"></script>
 	</head>
 	<body ng-controller="FacebookController">
+		<div ng-if="isLogged" class="profile">
+			<img ng-src="{{imageUrl || 'img/anonymous.png'}}" class="profile-picture"/>
+			{{getName()}}
+		</div>
 		<div class="first-row">
 			<div class="container" ng-controller="SiteController">
 				<div class="header col-md-12">
