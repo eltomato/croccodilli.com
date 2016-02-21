@@ -48,8 +48,6 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 								posts.push(post);
 								mappedPosts[rawPosts[i].identifier] = posts.indexOf(post);
 							}
-							console.log(posts);
-							console.log(mappedPosts);
 						}
 					}
 					posts.reverse();

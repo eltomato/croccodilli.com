@@ -6,7 +6,6 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 
 	$scope.loginFacebook = function() {
 		window.FB && FB.login(function(response) {
-			console.log(response);
 			$scope.$apply(function() {
 				$scope.callbackStatus(response);
 			});
@@ -14,7 +13,6 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	};
 
 	$scope.callbackStatus = function(response) {
-		console.log(response);
 		if (response.status === 'connected') {
 			$scope.isLogged = true;
 			$scope.userId = response.authResponse.userID;
@@ -28,7 +26,6 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 
 	$scope.getFacebookData = function() {
 		window.FB && FB.api('/me', function(response) {
-			console.log(response);
 			$scope.$apply(function() {
 				$scope.name = response.name;
 			});
