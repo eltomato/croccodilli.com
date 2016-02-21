@@ -162,10 +162,11 @@
 				</div>
 				<div class="col-md-12 row-button">
 					<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
+						ng-class="{'col-md-offset-5 col-xs-offset-5': !isLogger, 'col-md-offset-9 col-xs-offset-9': isLogged}"
 						ng-if="isLogged"
 						ng-disabled="posting"
 						ng-click="savePost()">
-						<span>Invia <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
+						<span>Invia <img ng-src="{{imageUrl || 'img/anonymous.png'}}" class="profile-picture"/></span>
 						<i ng-show="posting" class="fa fa-spinner fa-spin"></i>
 					</div>
 					<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
@@ -173,7 +174,8 @@
 						ng-click="loginFacebook()">
 						Invia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
 					</div>
-					<div class="post-email col-md-3 col-xs-3">
+					<div class="post-email col-md-3 col-xs-3"
+						ng-if="!isLogged">
 						<i class="color-ceruleo">oppure</i> utilizza
 						<input type="email"
 							ng-model="email"
@@ -181,6 +183,7 @@
 							placeholder="mia@mail.it" />
 					</div>
 					<div class="col-md-1 col-xs-1 btn btn-default"
+						ng-if="!isLogged"
 						ng-disabled="email=='' || email==null || posting"
 						ng-click="savePost()">
 						Invia
