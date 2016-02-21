@@ -115,9 +115,13 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	$scope.email = $scope.getCookie($scope.cookieName);
 	if($scope.email == "") {
 		window.FB && FB.getLoginStatus(function(response) {
-			$scope.$apply(function() {
+			if(!$scope.$$phase) {
+				$scope.$apply(function() {
+					$scope.callbackStatus(response);
+				});
+			} else {
 				$scope.callbackStatus(response);
-			});
+			}
 		});
 	} else {
 		$scope.isLogged = true;
