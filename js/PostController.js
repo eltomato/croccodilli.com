@@ -35,7 +35,9 @@ croccodilli.controller('PostController', ['$scope', 'postService', function($sco
 					$scope.commento = '';
 					$scope.subposting = false;
 					$scope.hideReply();
-					$scope.$emit('do.login');
+					if($scope.subpost.email) {
+						$scope.$emit('do.login', $scope.subpost.email);
+					}
 				});
 			}
 		}

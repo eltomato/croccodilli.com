@@ -107,7 +107,8 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 		}
 	};
 
-	$scope.$on('do.login', function() {
+	$scope.$on('do.login', function(email) {
+		$scope.email = email;
 		$scope.doLogin();
 	})
 
