@@ -158,7 +158,7 @@
 						ng-if="isLogged"
 						ng-disabled="posting"
 						ng-click="savePost()">
-						<span>Invia messaggio come <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
+						<span>Invia <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
 						<i ng-show="posting" class="fa fa-spinner fa-spin"></i>
 					</div>
 					<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
@@ -237,14 +237,14 @@
 							<textarea ng-model="subpost.commento"
 								ng-disabled="subposting"
 								autofocus
-								placeholder="Ci stavi pensando? Se ci scrivi ti risponderemo di sicuro...forse."></textarea>
+								placeholder="Secondo me..."></textarea>
 						</div>
 						<div class="col-md-12 row-button">
 							<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
 								ng-if="isLogged"
 								ng-disabled="subposting"
 								ng-click="saveSubPost(groupedPost)">
-								<span>Lascia messaggio come <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
+								<span>Invia <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
 								<i ng-show="subposting" class="fa fa-spinner fa-spin"></i>
 							</div>
 							<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
