@@ -31,7 +31,10 @@
 	<body ng-controller="FacebookController">
 		<div ng-if="isLogged" class="profile">
 			<img ng-src="{{imageUrl || 'img/anonymous.png'}}" class="profile-picture"/>
-			{{getName()}} <a ng-click="doLogout()"><i class="fa fa-power-off"></i></a>
+			{{getName()}} <a ng-click="doLogout()"
+				href="#">
+				<i class="fa fa-power-off"></i>
+			</a>
 		</div>
 		<div class="first-row">
 			<div class="container" ng-controller="SiteController">
