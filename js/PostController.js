@@ -3,6 +3,7 @@
 croccodilli.controller('PostController', ['$scope', 'postService', function($scope, postService) {
 
 	$scope.showReply = false;
+	$scope.subpost = {};
 	
 	$scope.enableReply = function() {
 		$scope.showReply = true;
