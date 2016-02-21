@@ -25,6 +25,7 @@
 		<script type="text/javascript" src="js/PostService.js"></script>
 		<script type="text/javascript" src="js/FacebookController.js"></script>
 		<script type="text/javascript" src="js/PostsController.js"></script>
+		<script type="text/javascript" src="js/PostController.js"></script>
 		<script type="text/javascript" src="js/WatchController.js"></script>
 	</head>
 	<body ng-controller="FacebookController">
@@ -150,7 +151,6 @@
 				<div class="col-md-12">
 					<textarea ng-model="commento"
 						ng-disabled="posting"
-						style="width: 100%; height: 150px;"
 						placeholder="Ci stavi pensando? Se ci scrivi ti risponderemo di sicuro...forse."></textarea>
 				</div>
 				<div class="col-md-12 row-button">
@@ -158,13 +158,13 @@
 						ng-if="isLogged"
 						ng-disabled="posting"
 						ng-click="savePost()">
-						<span>Lascia messaggio come <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
+						<span>Invia messaggio come <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
 						<i ng-show="posting" class="fa fa-spinner fa-spin"></i>
 					</div>
 					<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
 						ng-if="!isLogged"
 						ng-click="loginFacebook()">
-						Lascia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
+						Invia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
 					</div>
 				</div>
 			</div>
@@ -178,6 +178,7 @@
 					<i class="fa fa-spinner fa-spin"></i>
 				</div>
 				<div class="col-md-12 col-xs-12 post"
+					ng-controller="PostController"
 					ng-class="{'bottom-ceruleo-dashed': !$last}"
 					ng-repeat="groupedPost in groupedPosts">
 					<div class="col-md-1 col-xs-1 row">
@@ -201,7 +202,10 @@
 								<span ng-show="expanded">{{groupedPost.post.date_au}}</span>
 							</span>
 						</small><br>
-						{{groupedPost.post.content}}<i class="fa fa-reply"></i>
+						{{groupedPost.post.content}}<br>
+						<a class="color-ceruleo"
+							href=""
+							ng-click="enableReply()">Rispondi</a>
 					</div>
 					<div ng-repeat="post in groupedPost.referred"
 						class="col-md-12 col-xs-12 left-ceruleo sub-post">
@@ -226,6 +230,28 @@
 								</span>
 							</small><br>
 							{{post.content}}
+						</div>
+					</div>
+					<div ng-if="showReply">
+						<div class="col-md-12">
+							<textarea ng-model="commento"
+								ng-disabled="subposting"
+								autofocus
+								placeholder="Ci stavi pensando? Se ci scrivi ti risponderemo di sicuro...forse."></textarea>
+						</div>
+						<div class="col-md-12 row-button">
+							<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
+								ng-if="isLogged"
+								ng-disabled="subposting"
+								ng-click="saveSubPost(groupedPost)">
+								<span>Lascia messaggio come <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
+								<i ng-show="subposting" class="fa fa-spinner fa-spin"></i>
+							</div>
+							<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
+								ng-if="!isLogged"
+								ng-click="loginFacebook()">
+								Lascia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
+							</div>
 						</div>
 					</div>
 				</div>
