@@ -43,7 +43,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 				}
 			});
 		});
-		window.FB && FB.api('/'+$scope.userId+'/email', function (response) {
+		window.FB && FB.api('/'+$scope.userId, function (response) {
 			console.log(response)
 			$scope.$apply(function() {
 				if (response && !response.error) {
