@@ -10,18 +10,18 @@ croccodilli.controller('PostController', ['$scope', 'postService', function($sco
 
 	$scope.hideReply = function() {
 		$scope.showReply = false;
-		$scope.post = {};
 	};
 
-	$scope.saveSubPost = function(groupedPost, post) {
+	$scope.saveSubPost = function(parentPost) {
 		$scope.subposting = true;
 		if(!angular.isUndefined($scope.commento) 
 			&& $scope.commento != null 
 			&& $scope.commento.length != 0
-			&& !angular.isUndefined(groupedPost)
-			&& groupedPost != null) {
+			&& !angular.isUndefined(parentPost)
+			&& parentPost != null
+			&& parentPost.identifier) {
 			postService.savePost({
-				refer: groupedPost.identifier,
+				refer: parentPost.identifier,
 				mail: '',
 				poster: $scope.name,
 				posterImageUrl: $scope.imageUrl,
