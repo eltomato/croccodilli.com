@@ -60,17 +60,28 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 		},
 		savePost: function(post) {
 			var defer = $q.defer();
+			var identifier = Math.random().toString(36).slice(2);
+			var utcDate = moment.utc().format();
 			blockspring.runParsed(
 				"append-to-google-spreadsheet", {
 					"file_id": file_id,
 					"worksheet_id": worksheet_id,
-					"values": [[Math.random().toString(36).slice(2), post.refer, post.mail, moment.utc().format(), post.poster, post.posterImageUrl, post.content]]
+					"values": [[identifier, post.refer, post.mail, utcDate, post.poster, post.posterImageUrl, post.content]]
 				},{
 					"api_key": "br_24567_c5297836d2d26f1c73f111fff03f51a4478553e5"
 				}, function(res) {
 					console.log(res);
 					if(res.params && res.params.status) {
-						defer.resolve(true);
+						defer.resolve({
+							identifier: identifier,
+							refer: post.refer,
+							mail: post.mail,
+							date_it: moment(utcDate).tz('Europe/Rome').format('DD/MM/YYYY HH:mm:ss'),
+							date_au: moment(utcDate).tz('Australia/Sydney').format('DD/MM/YYYY HH:mm:ss'),
+							poster: post.poster,
+							posterImageUrl: post.posterImageUrl,
+							content: post.content
+						});
 					} else {
 						defer.resolve(false);
 					}

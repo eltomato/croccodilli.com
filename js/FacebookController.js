@@ -50,19 +50,21 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	};
 
 	$scope.savePost = function() {
-		$scope.posting = true;
-		if(!angular.isUndefined($scope.commento) && $scope.commento != null && $scope.commento.length != 0) {
-			postService.savePost({
-				refer: '',
-				mail: '',
-				poster: $scope.name,
-				posterImageUrl: $scope.imageUrl,
-				content: $scope.commento
-			}).then(function() {
-				$scope.commento = '';
-				$scope.posting = false;
-				$scope.$broadcast('posts.added');
-			});
+		if(!$scope.posting) {
+			$scope.posting = true;
+			if(!angular.isUndefined($scope.commento) && $scope.commento != null && $scope.commento.length != 0) {
+				postService.savePost({
+					refer: '',
+					mail: '',
+					poster: $scope.name,
+					posterImageUrl: $scope.imageUrl,
+					content: $scope.commento
+				}).then(function() {
+					$scope.commento = '';
+					$scope.posting = false;
+					$scope.$broadcast('posts.added');
+				});
+			}
 		}
 	};
 }]);
