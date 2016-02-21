@@ -267,7 +267,7 @@
 								ng-class="{'col-md-offset-5 col-xs-offset-5': !isLogged, 'col-md-offset-9 col-xs-offset-9': isLogged}"
 								ng-if="isLogged"
 								ng-disabled="subposting"
-								ng-click="saveSubPost(groupedPost)">
+								ng-click="saveSubPost(groupedPost, email)">
 								<span>Invia <img ng-src="{{imageUrl || 'img/anonymous.png'}}" class="profile-picture"/></span>
 								<i ng-show="subposting" class="fa fa-spinner fa-spin"></i>
 							</div>
