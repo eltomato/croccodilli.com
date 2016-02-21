@@ -107,6 +107,10 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 		}
 	};
 
+	$scope.$on('do.login', function() {
+		$scope.doLogin();
+	})
+
 	$scope.email = $scope.getCookie($scope.cookieName);
 	if($scope.email == "") {
 		window.FB && FB.getLoginStatus(function(response) {
