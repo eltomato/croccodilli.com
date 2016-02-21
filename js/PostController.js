@@ -26,7 +26,7 @@ croccodilli.controller('PostController', ['$scope', 'postService', function($sco
 				$scope.subposting = true;
 				postService.savePost({
 					refer: groupedPost.post.identifier,
-					mail: '',
+					email: $scope.subpost.email,
 					poster: $scope.name,
 					posterImageUrl: $scope.imageUrl,
 					content: $scope.subpost.commento

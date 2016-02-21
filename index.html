@@ -223,7 +223,7 @@
 					<div ng-repeat="post in groupedPost.referred"
 						class="col-md-12 col-xs-12 left-ceruleo sub-post">
 						<div class="col-md-1 col-xs-1 row">
-							<img ng-src="{{post.posterImageUrl}}"
+							<img ng-src="{{post.posterImageUrl || 'img/anonymous.png'}}"
 								class="profile-picture pull-right">
 						</div>
 						<div class="col-md-10 col-xs-10">
@@ -253,17 +253,30 @@
 								placeholder="Secondo me..."></textarea>
 						</div>
 						<div class="col-md-12 row-button">
-							<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
+							<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
 								ng-if="isLogged"
 								ng-disabled="subposting"
 								ng-click="saveSubPost(groupedPost)">
 								<span>Invia <img ng-src="{{imageUrl}}" class="profile-picture"/></span>
 								<i ng-show="subposting" class="fa fa-spinner fa-spin"></i>
 							</div>
-							<div class="row col-md-3 col-md-offset-9 col-xs-3 col-xs-offset-9 btn btn-default"
+							<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
 								ng-if="!isLogged"
 								ng-click="loginFacebook()">
 								Lascia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
+							</div>
+							<div class="post-email col-md-3 col-xs-3">
+								<i class="color-ceruleo">oppure</i> utilizza
+								<input type="email"
+									ng-model="subpost.email"
+									ng-disabled="subposting"
+									placeholder="mia@mail.it" />
+							</div>
+							<div class="col-md-1 col-xs-1 btn btn-default"
+								ng-disabled="subpost.email=='' || subpost.email==null || subposting"
+								ng-click="saveSubPost(groupedPost)">
+								Invia
+								<i ng-show="subposting" class="fa fa-spinner fa-spin"></i>
 							</div>
 						</div>
 					</div>

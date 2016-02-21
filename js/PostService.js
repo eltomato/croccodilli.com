@@ -66,7 +66,7 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 				"append-to-google-spreadsheet", {
 					"file_id": file_id,
 					"worksheet_id": worksheet_id,
-					"values": [[identifier, post.refer, post.mail, utcDate, post.poster, post.posterImageUrl, post.content]]
+					"values": [[identifier, post.refer, post.email, utcDate, post.poster, post.posterImageUrl, post.content]]
 				},{
 					"api_key": "br_24567_c5297836d2d26f1c73f111fff03f51a4478553e5"
 				}, function(res) {
@@ -75,7 +75,7 @@ angular.module('croccodilli.services').service('postService', ['$http', '$q', fu
 						defer.resolve({
 							identifier: identifier,
 							refer: post.refer,
-							mail: post.mail,
+							email: post.email,
 							date_it: moment(utcDate).tz('Europe/Rome').format('DD/MM/YYYY HH:mm:ss'),
 							date_au: moment(utcDate).tz('Australia/Sydney').format('DD/MM/YYYY HH:mm:ss'),
 							poster: post.poster,

@@ -57,7 +57,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 				$scope.posting = true;
 				postService.savePost({
 					refer: '',
-					mail: $scope.email,
+					email: $scope.email,
 					poster: $scope.name,
 					posterImageUrl: $scope.imageUrl,
 					content: $scope.commento
