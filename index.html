@@ -29,8 +29,8 @@
 		<script type="text/javascript" src="js/WatchController.js"></script>
 	</head>
 	<body ng-controller="FacebookController">
-		<div ng-if="isLogged" class="profile">
-			<img ng-src="{{imageUrl || 'img/anonymous.png'}}" class="profile-picture"/>
+		<div ng-if="postingInfo.isLogged" class="profile">
+			<img ng-src="{{postingInfo.imageUrl || 'img/anonymous.png'}}" class="profile-picture"/>
 			{{getName()}} <a ng-click="doLogout()"
 				href="#">
 				<i class="fa fa-power-off"></i>
@@ -156,38 +156,38 @@
 					<h1>Manteniamo vivi i rapporti <i style="color: #45ccce;" class="fa fa-heartbeat"></i></h1>
 				</div>
 				<div class="col-md-12">
-					<textarea ng-model="commento"
-						ng-disabled="posting"
+					<textarea ng-model="postingInfo.commento"
+						ng-disabled="postingInfo.posting"
 						placeholder="Ci stavi pensando? Se ci scrivi ti risponderemo di sicuro...forse."></textarea>
 				</div>
 				<div class="col-md-12 row-button">
 					<div class="col-md-3 col-xs-3 btn btn-default"
-						ng-class="{'col-md-offset-5 col-xs-offset-5': !isLogged, 'col-md-offset-9 col-xs-offset-9': isLogged}"
-						ng-if="isLogged"
-						ng-disabled="posting"
+						ng-class="{'col-md-offset-5 col-xs-offset-5': !postingInfo.isLogged, 'col-md-offset-9 col-xs-offset-9': postingInfo.isLogged}"
+						ng-if="postingInfo.isLogged"
+						ng-disabled="postingInfo.posting"
 						ng-click="savePost()">
-						<span>Invia <img ng-src="{{imageUrl || 'img/anonymous.png'}}" class="profile-picture"/></span>
-						<i ng-show="posting" class="fa fa-spinner fa-spin"></i>
+						<span>Invia <img ng-src="{{postingInfo.imageUrl || 'img/anonymous.png'}}" class="profile-picture"/></span>
+						<i ng-show="postingInfo.posting" class="fa fa-spinner fa-spin"></i>
 					</div>
 					<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
-						ng-if="!isLogged"
+						ng-if="!postingInfo.isLogged"
 						ng-click="loginFacebook()">
 						Invia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
 					</div>
 					<div class="post-email col-md-3 col-xs-3"
-						ng-if="!isLogged">
+						ng-if="!postingInfo.isLogged">
 						<i class="color-ceruleo">oppure</i> utilizza
 						<input type="email"
-							ng-model="email"
-							ng-disabled="posting"
+							ng-model="postingInfo.email"
+							ng-disabled="postingInfo.posting"
 							placeholder="mia@mail.it" />
 					</div>
 					<div class="col-md-1 col-xs-1 btn btn-default"
-						ng-if="!isLogged"
-						ng-disabled="email=='' || email==null || posting"
+						ng-if="!postingInfo.isLogged"
+						ng-disabled="postingInfo.email=='' || postingInfo.email==null || postingInfo.posting"
 						ng-click="savePost()">
 						Invia
-						<i ng-show="posting" class="fa fa-spinner fa-spin"></i>
+						<i ng-show="postingInfo.posting" class="fa fa-spinner fa-spin"></i>
 					</div>
 				</div>
 			</div>
@@ -205,7 +205,7 @@
 					ng-class="{'bottom-ceruleo-dashed': !$last}"
 					ng-repeat="groupedPost in groupedPosts">
 					<div class="col-md-1 col-xs-1 row">
-						<img ng-src="{{groupedPost.post.posterImageUrl||'img/anonymous.png'}}"
+						<img ng-src="{{groupedPost.post.posterImageUrl || 'img/anonymous.png'}}"
 							style="float: right;"
 							class="profile-picture">
 					</div>
@@ -257,39 +257,39 @@
 					</div>
 					<div ng-if="showReply">
 						<div class="col-md-12">
-							<textarea ng-model="subpost.commento"
-								ng-disabled="subposting"
+							<textarea ng-model="subpostingInfo.subpost.commento"
+								ng-disabled="subpostingInfo.subposting"
 								autofocus
 								placeholder="Secondo me..."></textarea>
 						</div>
 						<div class="col-md-12 row-button">
 							<div class="col-md-3 col-xs-3 btn btn-default"
-								ng-class="{'col-md-offset-5 col-xs-offset-5': !isLogged, 'col-md-offset-9 col-xs-offset-9': isLogged}"
-								ng-if="isLogged"
-								ng-disabled="subposting"
-								ng-click="saveSubPost(groupedPost, email)">
-								<span>Invia <img ng-src="{{imageUrl || 'img/anonymous.png'}}" class="profile-picture"/></span>
-								<i ng-show="subposting" class="fa fa-spinner fa-spin"></i>
+								ng-class="{'col-md-offset-5 col-xs-offset-5': !postingInfo.isLogged, 'col-md-offset-9 col-xs-offset-9': postingInfo.isLogged}"
+								ng-if="postingInfo.isLogged"
+								ng-disabled="subpostingInfo.subposting"
+								ng-click="saveSubPost(groupedPost, postingInfo.email)">
+								<span>Invia <img ng-src="{{postingInfo.imageUrl || 'img/anonymous.png'}}" class="profile-picture"/></span>
+								<i ng-show="subpostingInfo.subposting" class="fa fa-spinner fa-spin"></i>
 							</div>
 							<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
-								ng-if="!isLogged"
+								ng-if="!postingInfo.isLogged"
 								ng-click="loginFacebook()">
 								Lascia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
 							</div>
 							<div class="post-email col-md-3 col-xs-3"
-								ng-if="!isLogged">
+								ng-if="!postingInfo.isLogged">
 								<i class="color-ceruleo">oppure</i> utilizza
 								<input type="email"
-									ng-model="subpost.email"
-									ng-disabled="subposting"
+									ng-model="subpostingInfo.subpost.email"
+									ng-disabled="subpostingInfo.subposting"
 									placeholder="mia@mail.it" />
 							</div>
 							<div class="col-md-1 col-xs-1 btn btn-default"
-								ng-if="!isLogged"
-								ng-disabled="subpost.email=='' || subpost.email==null || subposting"
+								ng-if="!postingInfo.isLogged"
+								ng-disabled="subpostingInfo.subpost.email=='' || subpostingInfo.subpost.email==null || subpostingInfo.subposting"
 								ng-click="saveSubPost(groupedPost)">
 								Invia
-								<i ng-show="subposting" class="fa fa-spinner fa-spin"></i>
+								<i ng-show="subpostingInfo.subposting" class="fa fa-spinner fa-spin"></i>
 							</div>
 						</div>
 					</div>

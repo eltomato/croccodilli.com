@@ -4,6 +4,10 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	$scope.cookieName = "croccodilli";
 	$scope.cookieDurationDays = 2000;
 
+	$scope.postingInfo = {
+		posting: false
+	};
+
 	$scope.loginFacebook = function() {
 		window.FB && FB.login(function(response) {
 			$scope.$apply(function() {
@@ -14,53 +18,56 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 
 	$scope.callbackStatus = function(response) {
 		if (response.status === 'connected') {
-			$scope.isLogged = true;
-			$scope.userId = response.authResponse.userID;
+			$scope.postingInfo.isLogged = true;
+			$scope.postingInfo.userId = response.authResponse.userID;
 			$scope.getFacebookData();
 		} else if (response.status === 'not_authorized') {
-			$scope.isLogged = false;
+			$scope.postingInfo.isLogged = false;
 		} else {
-			$scope.isLogged = false;
+			$scope.postingInfo.isLogged = false;
 		}
 	};
 
 	$scope.getFacebookData = function() {
 		window.FB && FB.api('/me', function(response) {
 			$scope.$apply(function() {
-				$scope.name = response.name;
+				$scope.postingInfo.name = response.name;
 			});
 		});
 		window.FB && FB.api('/'+$scope.userId+'/picture', function (response) {
 			$scope.$apply(function() {
 				if (response && !response.error) {
-					$scope.imageUrl = response.data.url;
+					$scope.postingInfo.imageUrl = response.data.url;
 				}
 			});
 		});
 	};
 
 	$scope.getName = function() {
-		return $scope.name || $scope.email;
+		return $scope.postingInfo.name || $scope.postingInfo.email;
 	};
 
 	$scope.savePost = function() {
-		if(!$scope.posting) {
-			if(!angular.isUndefined($scope.commento)
-				&& $scope.commento != null
-				&& $scope.commento.length != 0) {
-				$scope.posting = true;
+		if(!angular.isUndefined($scope.postingInfo.email) 
+			&& $scope.postingInfo.email != null
+			&& $scope.postingInfo.email != "")
+		if(!$scope.postingInfo.posting) {
+			if(!angular.isUndefined($scope.postingInfo.commento)
+				&& $scope.postingInfo.commento != null
+				&& $scope.postingInfo.commento.length != 0) {
+				$scope.postingInfo.posting = true;
 				postService.savePost({
 					refer: '',
-					email: $scope.email,
-					poster: $scope.name,
-					posterImageUrl: $scope.imageUrl,
-					content: $scope.commento
+					email: $scope.postingInfo.email,
+					poster: $scope.postingInfo.name,
+					posterImageUrl: $scope.postingInfo.imageUrl,
+					content: $scope.postingInfo.commento
 				}).then(function() {
-					$scope.commento = '';
-					$scope.posting = false;
+					$scope.postingInfo.commento = '';
+					$scope.postingInfo.posting = false;
 					$scope.$broadcast('posts.added');
 				});
-				if($scope.email) {
+				if($scope.postingInfo.email) {
 					$scope.doLogin();
 				}
 			}
@@ -68,8 +75,8 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	};
 
 	$scope.doLogin = function() {
-		$scope.setCookie($scope.cookieName, $scope.email, $scope.cookieDurationDays);
-		$scope.isLogged = true;
+		$scope.setCookie($scope.cookieName, $scope.postingInfo.email, $scope.cookieDurationDays);
+		$scope.postingInfo.isLogged = true;
 	};
 
 	$scope.setCookie = function(cname, cvalue, exdays) {
@@ -95,25 +102,25 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	};
 
 	$scope.doLogout = function() {
-		if($scope.email) {
-			$scope.setCookie($scope.cookieName, $scope.email, -1);
-			$scope.isLogged = false;
+		if($scope.postingInfo.email) {
+			$scope.setCookie($scope.cookieName, $scope.postingInfo.email, -1);
+			$scope.postingInfo.isLogged = false;
 		} else {
 			window.FB && FB.logout(function(response) {
 				$scope.$apply(function() {
-					$scope.isLogged = false;
+					$scope.postingInfo.isLogged = false;
 				});
 			});
 		}
 	};
 
 	$scope.$on('do.login', function(event, email) {
-		$scope.email = email;
+		$scope.postingInfo.email = email;
 		$scope.doLogin();
 	})
 
-	$scope.email = $scope.getCookie($scope.cookieName);
-	if($scope.email == "") {
+	$scope.postingInfo.email = $scope.getCookie($scope.cookieName);
+	if($scope.postingInfo.email == "") {
 		window.FB && FB.getLoginStatus(function(response) {
 			if(!$scope.$$phase) {
 				$scope.$apply(function() {
@@ -124,6 +131,6 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 			}
 		});
 	} else {
-		$scope.isLogged = true;
+		$scope.postingInfo.isLogged = true;
 	}
 }]);
