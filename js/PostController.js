@@ -21,7 +21,7 @@ croccodilli.controller('PostController', ['$scope', 'postService', function($sco
 		if($scope.postingInfo.isLogged 
 			|| (!angular.isUndefined(email) 
 			&& email != null
-			&& email != "")) { 
+			&& email != "")) {
 			if(!$scope.subpostingInfo.subposting) {
 				if(!angular.isUndefined($scope.subpostingInfo.subpost.commento) 
 					&& $scope.subpostingInfo.subpost.commento != null 
