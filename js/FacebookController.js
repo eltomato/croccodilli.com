@@ -48,27 +48,29 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 	};
 
 	$scope.savePost = function() {
-		if(!angular.isUndefined($scope.postingInfo.email) 
+		if($scope.postingInfo.isLogged
+			|| (!angular.isUndefined($scope.postingInfo.email) 
 			&& $scope.postingInfo.email != null
-			&& $scope.postingInfo.email != "")
-		if(!$scope.postingInfo.posting) {
-			if(!angular.isUndefined($scope.postingInfo.commento)
-				&& $scope.postingInfo.commento != null
-				&& $scope.postingInfo.commento.length != 0) {
-				$scope.postingInfo.posting = true;
-				postService.savePost({
-					refer: '',
-					email: $scope.postingInfo.email,
-					poster: $scope.postingInfo.name,
-					posterImageUrl: $scope.postingInfo.imageUrl,
-					content: $scope.postingInfo.commento
-				}).then(function() {
-					$scope.postingInfo.commento = '';
-					$scope.postingInfo.posting = false;
-					$scope.$broadcast('posts.added');
-				});
-				if($scope.postingInfo.email) {
-					$scope.doLogin();
+			&& $scope.postingInfo.email != "")) {
+			if(!$scope.postingInfo.posting) {
+				if(!angular.isUndefined($scope.postingInfo.commento)
+					&& $scope.postingInfo.commento != null
+					&& $scope.postingInfo.commento.length != 0) {
+					$scope.postingInfo.posting = true;
+					postService.savePost({
+						refer: '',
+						email: $scope.postingInfo.email,
+						poster: $scope.postingInfo.name,
+						posterImageUrl: $scope.postingInfo.imageUrl,
+						content: $scope.postingInfo.commento
+					}).then(function() {
+						$scope.postingInfo.commento = '';
+						$scope.postingInfo.posting = false;
+						$scope.$broadcast('posts.added');
+					});
+					if($scope.postingInfo.email) {
+						$scope.doLogin();
+					}
 				}
 			}
 		}
