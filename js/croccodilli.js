@@ -8,7 +8,7 @@ var croccodilli = angular.module('croccodilli', [
 
 croccodilli.controller('SiteController', ['$scope', '$interval', function($scope, $interval) {
 	$scope.currentMillis = new Date().getTime();
-	$scope.endDate = 1472119200319;
+	$scope.endDate = 1472122800319;
 	$scope.dayInMillis = 24*60*60*1000;
 	$scope.hourInMillis = 60*60*1000;
 	$scope.minuteInMillis = 60*1000;
