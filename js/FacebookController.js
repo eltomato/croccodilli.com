@@ -34,7 +34,7 @@ croccodilli.controller('FacebookController', ['$scope', 'postService', function(
 				$scope.postingInfo.name = response.name;
 			});
 		});
-		window.FB && FB.api('/'+$scope.userId+'/picture', function (response) {
+		window.FB && FB.api('/'+$scope.postingInfo.userId+'/picture', function (response) {
 			$scope.$apply(function() {
 				if (response && !response.error) {
 					$scope.postingInfo.imageUrl = response.data.url;
