@@ -2,31 +2,30 @@
 	<head>
 		<title>Croccodilli</title>
 
-		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
 		<link rel="shortcut icon" type="image/png" href="img/croccodillo.png"/>
 
 		<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-		<!--<link rel="stylesheet" href="css/font-awesome.min.css">-->
+		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		
 		<script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
-		<script type="text/javascript" src="js/fb.js"></script>
-		<script type="text/javascript" src="js/moment.min.js"></script>
-		<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
-		<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
-		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/blockspring.js"></script>
+		<script type="text/javascript" src="lib/fb.js"></script>
+		<script type="text/javascript" src="lib/moment.min.js"></script>
+		<script type="text/javascript" src="lib/moment-timezone-with-data.min.js"></script>
+		<script type="text/javascript" src="lib/jquery-1.12.0.min.js"></script>
+		<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="lib/blockspring.js"></script>
 		
-		<script type="text/javascript" src="js/angular.min.js"></script>
-		<script type="text/javascript" src="js/roundProgress.js"></script>
-		<script type="text/javascript" src="js/croccodilli.js"></script>
-		<script type="text/javascript" src="js/PostService.js"></script>
-		<script type="text/javascript" src="js/FacebookController.js"></script>
-		<script type="text/javascript" src="js/PostsController.js"></script>
-		<script type="text/javascript" src="js/PostController.js"></script>
-		<script type="text/javascript" src="js/WatchController.js"></script>
+		<script type="text/javascript" src="lib/angular.min.js"></script>
+		<script type="text/javascript" src="lib/roundProgress.js"></script>
+		<script type="text/javascript" src="js/angular/croccodilli.js"></script>
+		<script type="text/javascript" src="js/angular/services/PostService.js"></script>
+		<script type="text/javascript" src="js/angular/controllers/CountdownController.js"></script>
+		<script type="text/javascript" src="js/angular/controllers/FacebookController.js"></script>
+		<script type="text/javascript" src="js/angular/controllers/PostsController.js"></script>
+		<script type="text/javascript" src="js/angular/controllers/PostController.js"></script>
+		<script type="text/javascript" src="js/angular/controllers/WatchController.js"></script>
 	</head>
 	<body ng-controller="FacebookController">
 		<div ng-if="postingInfo.isLogged" class="profile">
@@ -37,7 +36,7 @@
 			</a>
 		</div>
 		<div class="first-row">
-			<div class="container" ng-controller="SiteController">
+			<div class="container" ng-controller="CountdownController">
 				<div class="header col-md-12">
 					<h2>
 						<b>Australia 2016-2017</b>

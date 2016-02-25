@@ -1,6 +1,7 @@
 
 
-croccodilli.controller('PostController', ['$scope', 'postService', function($scope, postService) {
+angular.module('croccodilli.controllers')
+.controller('PostController', ['$scope', 'postService', function($scope, postService) {
 
 	$scope.showReply = false;
 	$scope.subpostingInfo = {

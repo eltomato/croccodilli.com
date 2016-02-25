@@ -1,5 +1,6 @@
 
-croccodilli.controller('PostsController', ['$scope', 'postService', function($scope, postService) {
+angular.module('croccodilli.controllers')
+.controller('PostsController', ['$scope', 'postService', function($scope, postService) {
 
 	$scope.groupedPosts = [];
 

@@ -1,5 +1,6 @@
 
-croccodilli.controller('FacebookController', ['$scope', 'postService', function($scope, postService) {
+angular.module('croccodilli.controllers')
+.controller('FacebookController', ['$scope', 'postService', function($scope, postService) {
 
 	$scope.cookieName = "croccodilli";
 	$scope.cookieDurationDays = 2000;

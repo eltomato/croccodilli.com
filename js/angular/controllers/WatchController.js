@@ -1,5 +1,6 @@
 
-croccodilli.controller('WatchController', ['$scope', function($scope) {
+angular.module('croccodilli.controllers')
+.controller('WatchController', ['$scope', function($scope) {
 
 	$scope.expanded = false;
 
