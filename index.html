@@ -20,17 +20,19 @@
 		<script type="text/javascript" src="lib/angular.min.js"></script>
 		<script type="text/javascript" src="lib/roundProgress.js"></script>
 		<script type="text/javascript" src="js/angular/croccodilli.js"></script>
+		<script type="text/javascript" src="js/angular/services/FacebookService.js"></script>
+		<script type="text/javascript" src="js/angular/services/EmailService.js"></script>
 		<script type="text/javascript" src="js/angular/services/PostService.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/CountdownController.js"></script>
-		<script type="text/javascript" src="js/angular/controllers/FacebookController.js"></script>
+		<script type="text/javascript" src="js/angular/controllers/LoginController.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/PostsController.js"></script>
-		<script type="text/javascript" src="js/angular/controllers/PostController.js"></script>
+		<script type="text/javascript" src="js/angular/controllers/SubPostController.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/WatchController.js"></script>
 	</head>
-	<body ng-controller="FacebookController">
+	<body ng-controller="LoginController">
 		<div ng-if="postingInfo.isLogged" class="profile">
 			<img ng-src="{{postingInfo.imageUrl || 'img/anonymous.png'}}" class="profile-picture"/>
-			{{getName()}} <a ng-click="doLogout()"
+			{{postingInfo.name}} <a ng-click="doLogout()"
 				href="#">
 				<i class="fa fa-power-off"></i>
 			</a>
@@ -170,7 +172,7 @@
 					</div>
 					<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
 						ng-if="!postingInfo.isLogged"
-						ng-click="loginFacebook()">
+						ng-click="doLogin()">
 						Invia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
 					</div>
 					<div class="post-email col-md-3 col-xs-3"
@@ -200,7 +202,7 @@
 					<i class="fa fa-spinner fa-spin"></i>
 				</div>
 				<div class="col-md-12 col-xs-12 post"
-					ng-controller="PostController"
+					ng-controller="SubPostController"
 					ng-class="{'bottom-ceruleo-dashed': !$last}"
 					ng-repeat="groupedPost in groupedPosts">
 					<div class="col-md-1 col-xs-1 row">
@@ -266,13 +268,13 @@
 								ng-class="{'col-md-offset-5 col-xs-offset-5': !postingInfo.isLogged, 'col-md-offset-9 col-xs-offset-9': postingInfo.isLogged}"
 								ng-if="postingInfo.isLogged"
 								ng-disabled="subpostingInfo.subposting"
-								ng-click="saveSubPost(groupedPost, postingInfo.email)">
+								ng-click="saveSubPost(groupedPost)">
 								<span>Invia <img ng-src="{{postingInfo.imageUrl || 'img/anonymous.png'}}" class="profile-picture"/></span>
 								<i ng-show="subpostingInfo.subposting" class="fa fa-spinner fa-spin"></i>
 							</div>
 							<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
 								ng-if="!postingInfo.isLogged"
-								ng-click="loginFacebook()">
+								ng-click="doLogin()">
 								Lascia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
 							</div>
 							<div class="post-email col-md-3 col-xs-3"

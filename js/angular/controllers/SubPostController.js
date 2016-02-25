@@ -1,7 +1,7 @@
 
 
 angular.module('croccodilli.controllers')
-.controller('PostController', ['$scope', 'postService', function($scope, postService) {
+.controller('SubPostController', ['$scope', 'postService', function($scope, postService) {
 
 	$scope.showReply = false;
 	$scope.subpostingInfo = {
@@ -17,21 +17,15 @@ angular.module('croccodilli.controllers')
 		$scope.subpost = {};
 	};
 
-	$scope.saveSubPost = function(groupedPost, email) {
+	$scope.saveSubPost = function(groupedPost) {
 		var email = $scope.subpostingInfo.subpost.email || $scope.postingInfo.email;
-		if($scope.postingInfo.isLogged 
-			|| (!angular.isUndefined(email) 
-			&& email != null
-			&& email != "")) {
+		if($scope.isLogged() || $scope.isEmailValid(email)) {
 			if(!$scope.subpostingInfo.subposting) {
-				if(!angular.isUndefined($scope.subpostingInfo.subpost.commento) 
-					&& $scope.subpostingInfo.subpost.commento != null 
-					&& $scope.subpostingInfo.subpost.commento.length != 0
-					&& groupedPost.post
-					&& !angular.isUndefined(groupedPost.post)
-					&& groupedPost.post != null
-					&& groupedPost.post.identifier) {
+				if($scope.isCommentoValid($scope.subpostingInfo.subpost.commento)
+					&& $scope.isGroupedPostValid(groupedPost)) {
+
 					$scope.subpostingInfo.subposting = true;
+
 					postService.savePost({
 						refer: groupedPost.post.identifier,
 						email: email,
@@ -43,12 +37,19 @@ angular.module('croccodilli.controllers')
 						$scope.subpostingInfo.commento = '';
 						$scope.subpostingInfo.subposting = false;
 						if($scope.subpostingInfo.subpost.email) {
-							$scope.$emit('do.login', $scope.subpostingInfo.subpost.email);
+							$scope.doLogin($scope.subpostingInfo.subpost.email);
 						}
 						$scope.hideReply();
 					});
 				}
 			}
 		}
+	};
+
+	$scope.isGroupedPostValid = function(groupedPost) {
+		return groupedPost.post
+			&& !angular.isUndefined(groupedPost.post)
+			&& groupedPost.post != null
+			&& groupedPost.post.identifier;
 	};
 }]);
