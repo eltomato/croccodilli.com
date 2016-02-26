@@ -29,8 +29,6 @@ angular.module('croccodilli.controllers')
 		who: 'Mark Twain'
 	}];
 
-	$scope.seconds = 0;
-
 	$scope.getDepartureMillis = function() {
 		return $scope.endDate - $scope.currentMillis;
 	};
@@ -49,6 +47,10 @@ angular.module('croccodilli.controllers')
 
 	$scope.calcSeconds = function() {
 		return Math.floor(((($scope.getDepartureMillis() % $scope.dayInMillis) % $scope.hourInMillis) % $scope.minuteInMillis) / $scope.secondInMillis);
+	};
+
+	$scope.isCountdownOverdue = function() {
+		return $scope.getDepartureMillis() < 0;
 	};
 
 	$scope.updateTime = function() {

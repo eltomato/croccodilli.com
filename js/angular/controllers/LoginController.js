@@ -15,6 +15,7 @@ angular.module('croccodilli.controllers')
 					postService.savePost({
 						refer: '',
 						email: $scope.postingInfo.email,
+						fbUserId: $scope.postingInfo.userId,
 						poster: $scope.postingInfo.name,
 						posterImageUrl: $scope.postingInfo.imageUrl,
 						content: $scope.postingInfo.commento

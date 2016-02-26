@@ -96,6 +96,16 @@ angular.module('croccodilli.services')
 				deferred.resolve(postingInfo);
 			});
 			return deferred.promise;
+		},
+		sendNotification: function(recipientUserId) {
+			if(facebookService.isFacebookActive()) {
+				FB.api('/' + recipientUserId + '/notifications', 'post', {
+					access_token: '120480261673611|561f587de4ad578658d9ae35e5372565',
+					href: 'http://croccodilli.info',
+					template: 'Hai ricevuto una risposta su croccodilli.com!',
+					ref: 'Mandata notifica ' + moment.utc().format()
+				});
+			}
 		}
 	};
 

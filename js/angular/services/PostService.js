@@ -2,7 +2,7 @@
 angular.module('croccodilli.services')
 .service('postService', ['$http', '$q', function($http, $q) {
 	
-	//var file_id_test = '1e7RvVO9QqfmJFvWYZ5_MNa4u3ABnN9oWgwxe2eRC2OM';
+	//var file_id = '1e7RvVO9QqfmJFvWYZ5_MNa4u3ABnN9oWgwxe2eRC2OM';
 	var file_id = '1sQixJW9vNR5lm_SINWQUdAXufhX4LIvnBY5jzIgsKCc';
 	var worksheet_id = '0';
 
@@ -28,6 +28,7 @@ angular.module('croccodilli.services')
 									identifier: rawPosts[i].identifier,
 									refer: rawPosts[i].refer,
 									email: rawPosts[i].email,
+									fbUserId: rawPosts[i].fbUserId,
 									date_it: moment(rawPosts[i].date).tz('Europe/Rome').format('DD/MM/YYYY HH:mm:ss'),
 									date_au: moment(rawPosts[i].date).tz('Australia/Sydney').format('DD/MM/YYYY HH:mm:ss'),
 									poster: rawPosts[i].poster,
@@ -40,6 +41,7 @@ angular.module('croccodilli.services')
 										identifier: rawPosts[i].identifier,
 										refer: rawPosts[i].refer,
 										email: rawPosts[i].email,
+										fbUserId: rawPosts[i].fbUserId,
 										date_it: moment(rawPosts[i].date).tz('Europe/Rome').format('DD/MM/YYYY HH:mm:ss'),
 										date_au: moment(rawPosts[i].date).tz('Australia/Sydney').format('DD/MM/YYYY HH:mm:ss'),
 										poster: rawPosts[i].poster,
@@ -67,7 +69,7 @@ angular.module('croccodilli.services')
 				"append-to-google-spreadsheet", {
 					"file_id": file_id,
 					"worksheet_id": worksheet_id,
-					"values": [[identifier, post.refer, post.email, utcDate, post.poster, post.posterImageUrl, post.content]]
+					"values": [[identifier, post.refer, post.email, post.fbUserId, utcDate, post.poster, post.posterImageUrl, post.content]]
 				},{
 					"api_key": "br_24567_c5297836d2d26f1c73f111fff03f51a4478553e5"
 				}, function(res) {
@@ -76,6 +78,7 @@ angular.module('croccodilli.services')
 							identifier: identifier,
 							refer: post.refer,
 							email: post.email,
+							fbUserId: post.fbUserId,
 							date_it: moment(utcDate).tz('Europe/Rome').format('DD/MM/YYYY HH:mm:ss'),
 							date_au: moment(utcDate).tz('Australia/Sydney').format('DD/MM/YYYY HH:mm:ss'),
 							poster: post.poster,

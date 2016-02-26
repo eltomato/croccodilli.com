@@ -54,6 +54,27 @@
 	}
 }
 
+.partiti-container {
+	position: absolute;
+	width: 100%;
+	bottom: 40%;
+	text-align: center;
+}
+@media screen and (max-width: 992px) {
+	.partiti-container {
+		bottom: 100px;
+	}
+}
+@media screen and (max-width: 992px) and (orientation: landscape) {
+	.partiti-container {
+		margin-top: 40%;
+	}
+}
+
+.color-clear {
+	color: #eaeaea;
+}
+
 body {
 	font-family: 'Poiret One', cursive;
 	-webkit-font-smoothing: subpixel-antialiased;

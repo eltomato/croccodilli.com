@@ -1,7 +1,7 @@
 
 
 angular.module('croccodilli.controllers')
-.controller('SubPostController', ['$scope', 'postService', function($scope, postService) {
+.controller('SubPostController', ['$scope', 'postService', 'facebookService', function($scope, postService, facebookService) {
 
 	$scope.showReply = false;
 	$scope.subpostingInfo = {
@@ -29,6 +29,7 @@ angular.module('croccodilli.controllers')
 					postService.savePost({
 						refer: groupedPost.post.identifier,
 						email: email,
+						fbUserId: $scope.postingInfo.userId,
 						poster: $scope.postingInfo.name,
 						posterImageUrl: $scope.postingInfo.imageUrl,
 						content: $scope.subpostingInfo.subpost.commento
@@ -39,11 +40,40 @@ angular.module('croccodilli.controllers')
 						if($scope.subpostingInfo.subpost.email) {
 							$scope.doLogin($scope.subpostingInfo.subpost.email);
 						}
+						$scope.sendNotifications(groupedPost);
 						$scope.hideReply();
 					});
 				}
 			}
 		}
+	};
+
+	$scope.sendNotifications = function(groupedPost) {
+		if($scope.postingInfo.isEmail) {
+		} else {
+			var notificationUserIds = $scope.extractFacebookNotificationIds(groupedPost);
+			for(var i=0; i<notificationUserIds.length; i++) {
+				facebookService.sendNotification(notificationUserIds[i]);
+			}
+		}
+	};
+
+	$scope.extractFacebookNotificationIds = function(groupedPost) {
+		var notificationUserIds = [];
+		if(groupedPost.post.fbUserId 
+			&& groupedPost.post.fbUserId != $scope.postingInfo.userId) {
+			notificationUserIds.push(groupedPost.post.fbUserId);
+		}
+		for(var i=0; i<groupedPost.referred.length; i++) {
+			var currentPost = groupedPost.referred[i];
+			if(!angular.isUndefined(currentPost.fbUserId)
+				&& currentPost.fbUserId 
+				&& currentPost.fbUserId != $scope.postingInfo.userId
+				&& (notificationUserIds.indexOf(currentPost.fbUserId) == -1)) {
+				notificationUserIds.push(currentPost.fbUserId);
+			}
+		}
+		return notificationUserIds;
 	};
 
 	$scope.isGroupedPostValid = function(groupedPost) {
