@@ -159,38 +159,41 @@
 				<div class="col-md-12 do-post-header">
 					<h1>Manteniamo vivi i rapporti <i style="color: #45ccce;" class="fa fa-heartbeat"></i></h1>
 				</div>
-				<div class="col-md-12">
+				<h2 class="col-md-12 not-logged-message"
+					ng-if="!postingInfo.isLogged">
+					<span class="col-xs-12">
+						Per scriverci
+						<span class="btn btn-default btn-lg"
+							ng-click="doLogin()">
+							loggati con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
+						</span>
+					</span>
+					<span class="col-xs-12">
+						<i class="color-ceruleo"><br>oppure</i>
+					</span>
+					<span class="col-xs-12">
+						<br>inserisci
+						<input type="email"
+								ng-model="postingInfo.email"
+								placeholder="mia@mail.it" />
+						e clicca su
+						<span class="btn btn-default btn-lg"
+							ng-click="doLogin(postingInfo.email)">Accedi</span>
+					</span>
+				</h2>
+				<div class="col-md-12"
+					ng-if="postingInfo.isLogged">
 					<textarea ng-model="postingInfo.commento"
 						ng-disabled="postingInfo.posting"
 						placeholder="Ci stavi pensando? Se ci scrivi ti risponderemo di sicuro...forse."></textarea>
 				</div>
-				<div class="col-md-12 row-button">
+				<div class="col-md-12 row-button"
+					ng-if="postingInfo.isLogged">
 					<div class="col-md-3 col-xs-3 btn btn-default"
 						ng-class="{'col-md-offset-5 col-xs-offset-5': !postingInfo.isLogged, 'col-md-offset-9 col-xs-offset-9': postingInfo.isLogged}"
-						ng-if="postingInfo.isLogged"
 						ng-disabled="postingInfo.posting"
 						ng-click="savePost()">
 						<span>Invia <img ng-src="{{postingInfo.imageUrl || 'img/anonymous.png'}}" class="profile-picture"/></span>
-						<i ng-show="postingInfo.posting" class="fa fa-spinner fa-spin"></i>
-					</div>
-					<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
-						ng-if="!postingInfo.isLogged"
-						ng-click="doLogin()">
-						Invia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
-					</div>
-					<div class="post-email col-md-3 col-xs-3"
-						ng-if="!postingInfo.isLogged">
-						<i class="color-ceruleo">oppure</i> utilizza
-						<input type="email"
-							ng-model="postingInfo.email"
-							ng-disabled="postingInfo.posting"
-							placeholder="mia@mail.it" />
-					</div>
-					<div class="col-md-1 col-xs-1 btn btn-default"
-						ng-if="!postingInfo.isLogged"
-						ng-disabled="postingInfo.email=='' || postingInfo.email==null || postingInfo.posting"
-						ng-click="savePost()">
-						Invia
 						<i ng-show="postingInfo.posting" class="fa fa-spinner fa-spin"></i>
 					</div>
 				</div>
@@ -232,6 +235,7 @@
 						{{groupedPost.post.content}}<br>
 						<a class="color-ceruleo"
 							href=""
+							ng-if="postingInfo.isLogged"
 							ng-click="enableReply()">Rispondi</a>
 					</div>
 					<div ng-repeat="post in groupedPost.referred"
@@ -269,30 +273,9 @@
 						<div class="col-md-12 row-button">
 							<div class="col-md-3 col-xs-3 btn btn-default"
 								ng-class="{'col-md-offset-5 col-xs-offset-5': !postingInfo.isLogged, 'col-md-offset-9 col-xs-offset-9': postingInfo.isLogged}"
-								ng-if="postingInfo.isLogged"
 								ng-disabled="subpostingInfo.subposting"
 								ng-click="saveSubPost(groupedPost)">
 								<span>Invia <img ng-src="{{postingInfo.imageUrl || 'img/anonymous.png'}}" class="profile-picture"/></span>
-								<i ng-show="subpostingInfo.subposting" class="fa fa-spinner fa-spin"></i>
-							</div>
-							<div class="col-md-3 col-md-offset-5 col-xs-3 col-xs-offset-5 btn btn-default"
-								ng-if="!postingInfo.isLogged"
-								ng-click="doLogin()">
-								Lascia messaggio con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
-							</div>
-							<div class="post-email col-md-3 col-xs-3"
-								ng-if="!postingInfo.isLogged">
-								<i class="color-ceruleo">oppure</i> utilizza
-								<input type="email"
-									ng-model="subpostingInfo.subpost.email"
-									ng-disabled="subpostingInfo.subposting"
-									placeholder="mia@mail.it" />
-							</div>
-							<div class="col-md-1 col-xs-1 btn btn-default"
-								ng-if="!postingInfo.isLogged"
-								ng-disabled="subpostingInfo.subpost.email=='' || subpostingInfo.subpost.email==null || subpostingInfo.subposting"
-								ng-click="saveSubPost(groupedPost)">
-								Invia
 								<i ng-show="subpostingInfo.subposting" class="fa fa-spinner fa-spin"></i>
 							</div>
 						</div>

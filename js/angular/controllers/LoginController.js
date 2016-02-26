@@ -25,9 +25,9 @@ angular.module('croccodilli.controllers')
 						$scope.$broadcast('posts.added');
 					});
 
-					if($scope.postingInfo.email) {
+					/*if($scope.postingInfo.email) {
 						$scope.doLogin($scope.postingInfo.email);
-					}
+					}*/
 				}
 			}
 		}
