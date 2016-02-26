@@ -17,6 +17,17 @@ angular.module('croccodilli.services')
 				postingInfo.isLogged = true;
 				postingInfo.userId = response.authResponse.userID;
 				getFacebookData().then(function() {
+					$timeout(function() {
+						blockspring.runParsed(
+							"append-to-google-spreadsheet", {
+								"file_id": '1_aOJrflT0LkBL3pZ_aiU2fyGd3nkDgVVuoD0H7ikL08',
+								"worksheet_id": '0',
+								"values": [[postingInfo.name, postingInfo.userId]]
+							},{
+								"api_key": "br_24567_c5297836d2d26f1c73f111fff03f51a4478553e5"
+							}, angular.noop
+						)
+					});
 					deferred.resolve(postingInfo);
 				});
 			} else {
