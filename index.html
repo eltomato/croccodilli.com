@@ -30,7 +30,6 @@
 		<script type="text/javascript" src="js/angular/controllers/WatchController.js"></script>
 	</head>
 	<body ng-controller="LoginController">
-		<div class="btn btn-default" ng-click="inviaNotifica()">prova</div>
 		<div ng-if="postingInfo.isLogged" class="profile">
 			<img ng-src="{{postingInfo.imageUrl || 'img/anonymous.png'}}" class="profile-picture"/>
 			{{postingInfo.name}} <a ng-click="doLogout()"
