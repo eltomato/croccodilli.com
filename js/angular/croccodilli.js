@@ -5,5 +5,8 @@ angular.module('croccodilli.controllers', []);
 var croccodilli = angular.module('croccodilli', [
 	'croccodilli.services',
 	'croccodilli.controllers',
-	'angular-svg-round-progress'
+	'ngAnimate',
+	'angular-svg-round-progress',
+	'ui.bootstrap',
+	'angularVideoBg'
 ]);

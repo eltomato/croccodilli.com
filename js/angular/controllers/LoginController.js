@@ -5,6 +5,7 @@ angular.module('croccodilli.controllers')
 	$scope.postingInfo = {
 		posting: false
 	};
+	$scope.videoId = 'h44rTt-OOXM';
 
 	$scope.savePost = function() {
 		if($scope.isLogged() || $scope.isEmailValid($scope.postingInfo.email)) {

@@ -2,13 +2,15 @@
 	<head>
 		<title>Croccodilli</title>
 
+		<meta name="description" content="Il viaggio di Tommaso e Sharon: alla conquista dell'Australia!" />
+
 		<link rel="shortcut icon" type="image/png" href="img/croccodillo.png"/>
 
 		<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
-		
+
 		<script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
 		<script type="text/javascript" src="lib/fb.js"></script>
 		<script type="text/javascript" src="lib/moment.min.js"></script>
@@ -18,16 +20,23 @@
 		<script type="text/javascript" src="lib/blockspring.js"></script>
 		
 		<script type="text/javascript" src="lib/angular.min.js"></script>
+		<script type="text/javascript" src="lib/angular-animate.min.js"></script>
+		<script type="text/javascript" src="lib/angular-video-bg.min.js"></script>
 		<script type="text/javascript" src="lib/roundProgress.js"></script>
 		<script type="text/javascript" src="js/angular/croccodilli.js"></script>
 		<script type="text/javascript" src="js/angular/services/FacebookService.js"></script>
 		<script type="text/javascript" src="js/angular/services/EmailService.js"></script>
 		<script type="text/javascript" src="js/angular/services/PostService.js"></script>
+		<script type="text/javascript" src="js/angular/services/SlidesService.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/CountdownController.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/LoginController.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/PostsController.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/SubPostController.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/WatchController.js"></script>
+		<script type="text/javascript" src="js/angular/controllers/SlidesController.js"></script>
+
+		<script type="text/javascript" src="lib/ui-bootstrap-custom-build/ui-bootstrap-custom-1.2.0.min.js"></script>
+		<script type="text/javascript" src="lib/ui-bootstrap-custom-build/ui-bootstrap-custom-tpls-1.2.0.min.js"></script>
 	</head>
 	<body ng-controller="LoginController">
 		<div ng-if="postingInfo.isLogged" class="profile">
@@ -125,6 +134,31 @@
 				</div>
 			</div>
 		</div>
+		<div class="first-row"
+			ng-if="false"
+			class="font-size-x-large"
+			ng-style="getCurrentSlideBackground()"
+			ng-controller="SlidesController">
+			<div uib-carousel
+				active="active"
+				no-wrap="noWrap"
+				class="height-100">
+				<div uib-slide
+					class="height-100"
+					ng-repeat="slide in slides track by slide.id"
+					index="slides.indexOf(slide)">
+					<div ng-if="slide.videoId && slides.indexOf(slide) == active"
+						video-bg
+						video-id="slide.videoId"
+						class="height-100 width-100"></div>
+					<div class="container slides-background">
+						<h1>{{slide.title}}</h1>
+						<span ng-bind-html="slide.content">
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div>
 			<div class="container">
 				<div class="col-md-12 whatsapp-header">
@@ -134,10 +168,10 @@
 								href="https://www.facebook.com/tommaso.previero" target="_blank">Tommaso</a>
 						</h2>
 						<div class="col-md-12 whatsapp-number">
-							Italia <i style="color: green;" class="fa fa-whatsapp"></i> +39 347 1114206
+							Italia <i class="fa fa-whatsapp color-green"></i> +39 347 1114206
 						</div>
 						<div class="col-md-12 whatsapp-number">
-							Australia <i style="color: green;" class="fa fa-whatsapp"></i> Coming soon...
+							Australia <i class="fa fa-whatsapp color-green"></i> Coming soon...
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -146,10 +180,10 @@
 								href="https://www.facebook.com/sharon.storti" target="_blank">Sharon</a>
 						</h2>
 						<div class="col-md-12 whatsapp-number">
-							Italia <i style="color: green;" class="fa fa-whatsapp"></i> +39 349 8439920
+							Italia <i class="fa fa-whatsapp color-green"></i> +39 349 8439920
 						</div>
 						<div class="col-md-12 whatsapp-number">
-							Australia <i style="color: green;" class="fa fa-whatsapp"></i> Coming soon...
+							Australia <i class="fa fa-whatsapp color-green"></i> Coming soon...
 						</div>
 					</div>
 				</div>
@@ -157,7 +191,7 @@
 					<hr class="full-width">
 				</div>
 				<div class="col-md-12 do-post-header">
-					<h1>Manteniamo vivi i rapporti <i style="color: #45ccce;" class="fa fa-heartbeat"></i></h1>
+					<h1>Manteniamo vivi i rapporti <i class="fa fa-heartbeat color-ceruleo"></i></h1>
 				</div>
 				<h2 class="col-md-12 not-logged-message"
 					ng-if="!postingInfo.isLogged">
@@ -165,7 +199,7 @@
 						Per scriverci
 						<span class="btn btn-default btn-lg"
 							ng-click="doLogin()">
-							loggati con <i style="color: darkblue; font-size: 15px;" class="fa fa-facebook-official"></i>
+							loggati con <i class="fa fa-facebook-official fb-icon"></i>
 						</span>
 					</span>
 					<span class="col-xs-12">

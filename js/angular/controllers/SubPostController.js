@@ -37,9 +37,9 @@ angular.module('croccodilli.controllers')
 						groupedPost.referred.push(savedPost);
 						$scope.subpostingInfo.commento = '';
 						$scope.subpostingInfo.subposting = false;
-						if($scope.subpostingInfo.subpost.email) {
+						/*if($scope.subpostingInfo.subpost.email) {
 							$scope.doLogin($scope.subpostingInfo.subpost.email);
-						}
+						}*/
 						$scope.sendNotifications(groupedPost);
 						$scope.hideReply();
 					});
