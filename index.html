@@ -9,6 +9,9 @@
 		<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="lib/slick/slick.css">
+		<link rel="stylesheet" href="lib/slick/slick-theme.css">
+		<link rel="stylesheet" href="lib/hover-min.css">
 		<link rel="stylesheet" href="css/style.css">
 
 		<script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
@@ -20,10 +23,13 @@
 		<script type="text/javascript" src="lib/blockspring.js"></script>
 		
 		<script type="text/javascript" src="lib/angular.min.js"></script>
-		<script type="text/javascript" src="lib/angular-animate.min.js"></script>
 		<script type="text/javascript" src="lib/angular-video-bg.min.js"></script>
+		<script type="text/javascript" src="lib/angular-smooth-scroll.js"></script>
+		<script type="text/javascript" src="lib/slick/slick.min.js"></script>
+		<script type="text/javascript" src="lib/angular-slick.min.js"></script>
 		<script type="text/javascript" src="lib/roundProgress.js"></script>
 		<script type="text/javascript" src="js/angular/croccodilli.js"></script>
+		<script type="text/javascript" src="js/angular/filters.js"></script>
 		<script type="text/javascript" src="js/angular/services/FacebookService.js"></script>
 		<script type="text/javascript" src="js/angular/services/EmailService.js"></script>
 		<script type="text/javascript" src="js/angular/services/PostService.js"></script>
@@ -34,9 +40,6 @@
 		<script type="text/javascript" src="js/angular/controllers/SubPostController.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/WatchController.js"></script>
 		<script type="text/javascript" src="js/angular/controllers/SlidesController.js"></script>
-
-		<script type="text/javascript" src="lib/ui-bootstrap-custom-build/ui-bootstrap-custom-1.2.0.min.js"></script>
-		<script type="text/javascript" src="lib/ui-bootstrap-custom-build/ui-bootstrap-custom-tpls-1.2.0.min.js"></script>
 	</head>
 	<body ng-controller="LoginController">
 		<div ng-if="postingInfo.isLogged" class="profile">
@@ -47,6 +50,10 @@
 			</a>
 		</div>
 		<div class="first-row">
+			<div ng-if="'(min-width: 992px)' | matchMedia"
+				video-bg
+				video-id="'QBa-e45o6eM'"
+				class="height-100 width-100"></div>
 			<div class="container" ng-controller="CountdownController">
 				<div class="header col-md-12">
 					<h2>
@@ -132,9 +139,55 @@
 							animation-delay="0"></div>
 					</div>
 				</div>
+				<div class="col-md-12 col-xs-12 button-row-header">
+					<span class="btn btn-default btn-header col-md-2 col-md-offset-5 col-xs-2 col-xs-offset-5"
+						scroll-to="scrivici">Scrivici</span>
+				</div>
 			</div>
 		</div>
-		<div class="first-row"
+		<div class="second-row"
+			ng-if="false"
+			ng-controller="SlidesController">
+			<div class="col-md-12 center font-size-x-large"
+				ng-if="loadingSlides">
+				<i class="fa fa-spinner fa-spin"></i>
+			</div>
+			<div class="container" ng-if="slides">
+				<div class="col-md-12" style="height:200px;">
+					<div slick
+						current-index="0"
+						slides-to-show="3"
+						slides-to-scroll="3"
+						next-arrow=".slick-next"
+						prev-arrow=".slick-prev">
+						<div ng-repeat="slide in slides"
+							ng-style="getSlideBackground(slide)"
+							ng-click="selectSlide(slide)"
+							class="slide hvr-underline-from-center">
+							<h4 class="date">{{slide.date}}</h4>
+							<h3 class="title">{{slide.title}}</h3>
+							<div ng-if="slide.videoId"
+								class="video">
+								<i class="fa fa-play"></i>
+							</div>
+						</div>
+						<a href="" class="slick-prev color-ceruleo">
+							<i class="fa fa-chevron-left"></i>
+						</a>
+						<a href="" class="slick-next color-ceruleo">
+							<i class="fa fa-chevron-right"></i>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-12 slide-detail"
+					ng-if="slideSelected"
+					ng-style="getSlideBackground(slideSelected)">
+					<h4 class="date">{{slideSelected.date}}</h4>
+					<h3 class="title">{{slideSelected.title}}</h3>
+				</div>
+			</div>
+		</div>
+		<!--<div class="first-row"
 			ng-if="false"
 			class="font-size-x-large"
 			ng-style="getCurrentSlideBackground()"
@@ -158,38 +211,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 		<div>
-			<div class="container">
-				<div class="col-md-12 whatsapp-header">
-					<div class="col-md-6 whatsapp-col">
-						<h2 class="col-md-12">
-							<a class="color-ceruleo"
-								href="https://www.facebook.com/tommaso.previero" target="_blank">Tommaso</a>
-						</h2>
-						<div class="col-md-12 whatsapp-number">
-							Italia <i class="fa fa-whatsapp color-green"></i> +39 347 1114206
-						</div>
-						<div class="col-md-12 whatsapp-number">
-							Australia <i class="fa fa-whatsapp color-green"></i> Coming soon...
-						</div>
-					</div>
-					<div class="col-md-6">
-						<h2 class="col-md-12">
-							<a class="color-ceruleo"
-								href="https://www.facebook.com/sharon.storti" target="_blank">Sharon</a>
-						</h2>
-						<div class="col-md-12 whatsapp-number">
-							Italia <i class="fa fa-whatsapp color-green"></i> +39 349 8439920
-						</div>
-						<div class="col-md-12 whatsapp-number">
-							Australia <i class="fa fa-whatsapp color-green"></i> Coming soon...
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<hr class="full-width">
-				</div>
+			<div id="scrivici"
+				class="container">
 				<div class="col-md-12 do-post-header">
 					<h1>Manteniamo vivi i rapporti <i class="fa fa-heartbeat color-ceruleo"></i></h1>
 				</div>
@@ -317,6 +342,38 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer"></div>
+		<div class="footer">
+			<div class="container">
+				<div class="col-md-12">
+					<hr class="full-width">
+				</div>
+				<div class="col-md-12 whatsapp-header">
+					<div class="col-md-6 whatsapp-col">
+						<h2 class="col-md-12">
+							<a class="color-ceruleo"
+								href="https://www.facebook.com/tommaso.previero" target="_blank">Tommaso</a>
+						</h2>
+						<div class="col-md-12 whatsapp-number">
+							Italia <i class="fa fa-whatsapp color-green"></i> +39 347 1114206
+						</div>
+						<div class="col-md-12 whatsapp-number">
+							Australia <i class="fa fa-whatsapp color-green"></i> Coming soon...
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h2 class="col-md-12">
+							<a class="color-ceruleo"
+								href="https://www.facebook.com/sharon.storti" target="_blank">Sharon</a>
+						</h2>
+						<div class="col-md-12 whatsapp-number">
+							Italia <i class="fa fa-whatsapp color-green"></i> +39 349 8439920
+						</div>
+						<div class="col-md-12 whatsapp-number">
+							Australia <i class="fa fa-whatsapp color-green"></i> Coming soon...
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

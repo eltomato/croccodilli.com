@@ -23,6 +23,7 @@ angular.module('croccodilli.services')
 						for(var i=0; i<rawSlides.length; i++) {
 							slides.push({
 								id: parseInt(rawSlides[i].id),
+								date: moment(rawSlides[i].date).tz('Europe/Rome').format('DD/MM/YYYY'),
 								videoId: rawSlides[i].videoId,
 								background: rawSlides[i].background,
 								content: $sce.trustAsHtml(rawSlides[i].content),
