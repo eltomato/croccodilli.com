@@ -1,9 +1,10 @@
 
 angular.module('croccodilli.controllers')
-.controller('SlidesController', ['$scope', 'slidesService', function($scope, slidesService) {
+.controller('SlidesController', ['$scope', '$timeout', 'slidesService', function($scope, $timeout, slidesService) {
 
 	$scope.noWrap = false;
 	$scope.active = 0;
+	$scope.showingText = true;
 
 	$scope.getSlideBackground = function(slide) {
 		if(slide && slide.background) {
@@ -20,7 +21,18 @@ angular.module('croccodilli.controllers')
 	};
 
 	$scope.selectSlide = function(slide) {
-		$scope.slideSelected = slide;
+		$scope.slideSelected = null;
+		$timeout(function() {
+			$scope.slideSelected = slide;
+		});
+	};
+
+	$scope.hideSlide = function() {
+		$scope.slideSelected = null;
+	};
+
+	$scope.toggleText = function() {
+		$scope.showingText = !$scope.showingText;
 	};
 
 	$scope.loadingSlides = true;

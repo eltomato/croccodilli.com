@@ -22,7 +22,7 @@ angular.module('croccodilli.services')
 						var rawSlides = res.params.data;
 						for(var i=0; i<rawSlides.length; i++) {
 							slides.push({
-								id: parseInt(rawSlides[i].id),
+								id: rawSlides[i].id,
 								date: moment(rawSlides[i].date).tz('Europe/Rome').format('DD/MM/YYYY'),
 								videoId: rawSlides[i].videoId,
 								background: rawSlides[i].background,
@@ -44,7 +44,7 @@ angular.module('croccodilli.services')
 				"append-to-google-spreadsheet", {
 					"file_id": file_id,
 					"worksheet_id": worksheet_id,
-					"values": [[slide.id, slide.videoId, slide.background, slide.content, slide.title]]
+					"values": [[Math.random().toString(36).slice(2), moment.utc().format(), slide.videoId, slide.background, slide.content, slide.title]]
 				},{
 					"api_key": "br_24567_c5297836d2d26f1c73f111fff03f51a4478553e5"
 				}, function(res) {

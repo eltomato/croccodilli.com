@@ -216,7 +216,7 @@ input.ng-invalid-email {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	z-index: 1;
+	z-index: 2;
 }
 
 .not-logged-message {
@@ -278,6 +278,7 @@ input.ng-invalid-email {
 
 .slide {
 	padding: 10px;
+	color: #eaeaea;
 }
 
 .slide:hover {
@@ -304,6 +305,7 @@ input.ng-invalid-email {
 	padding: 10px;
 	height: 700px;
 	margin-top: 30px;
+	color: #eaeaea;
 }
 
 .slide-detail .title {
@@ -314,4 +316,19 @@ input.ng-invalid-email {
 .slide-detail .date {
 	text-align: center;
 	font-weight: bold;
+}
+
+.slide-selected-container.ng-hide-remove {
+	-webkit-animation: zoomIn 0.5s;
+	-moz-animation: zoomIn 0.5s;
+	-ms-animation: zoomIn 0.5s;
+	animation: zoomIn 0.5s;
+}
+
+.slide-detail iframe {
+	left: 0px !important;
+}
+
+.slide-detail .slide-commands {
+	float: right;
 }

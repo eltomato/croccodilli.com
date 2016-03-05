@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="lib/slick/slick.css">
 		<link rel="stylesheet" href="lib/slick/slick-theme.css">
 		<link rel="stylesheet" href="lib/hover-min.css">
+		<link rel="stylesheet" href="lib/animate.css">
 		<link rel="stylesheet" href="css/style.css">
 
 		<script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
@@ -23,6 +24,7 @@
 		<script type="text/javascript" src="lib/blockspring.js"></script>
 		
 		<script type="text/javascript" src="lib/angular.min.js"></script>
+		<script type="text/javascript" src="lib/angular-animate.min.js"></script>
 		<script type="text/javascript" src="lib/angular-video-bg.min.js"></script>
 		<script type="text/javascript" src="lib/angular-smooth-scroll.js"></script>
 		<script type="text/javascript" src="lib/slick/slick.min.js"></script>
@@ -140,19 +142,34 @@
 					</div>
 				</div>
 				<div class="col-md-12 col-xs-12 button-row-header">
-					<span class="btn btn-default btn-header col-md-2 col-md-offset-5 col-xs-2 col-xs-offset-5"
-						scroll-to="scrivici">Scrivici</span>
+					<div class="col-md-2 col-md-offset-4 col-xs-2 col-xs-offset-2">
+						<span class="btn btn-default btn-header col-md-12"
+							scroll-to="scrivici">Scrivici</span>
+					</div>
+					<div class="col-md-2 col-xs-2">
+						<span class="btn btn-default btn-header col-md-12"
+							scroll-to="gallery">Gallery</span>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="second-row"
-			ng-if="false"
+		<div id="gallery"
+			class="second-row"
 			ng-controller="SlidesController">
-			<div class="col-md-12 center font-size-x-large"
-				ng-if="loadingSlides">
-				<i class="fa fa-spinner fa-spin"></i>
+			<div class="container" ng-if="loadingSlides">
+				<div class="col-md-12 center font-size-x-large">
+					<h1>La calma &egrave; la virt&ugrave; dei forti dicono...</h1>
+					<i class="fa fa-spinner fa-spin"></i>
+				</div>
 			</div>
-			<div class="container" ng-if="slides">
+			<div class="container" ng-if="slides.length == 0">
+				<div class="col-md-12 center font-size-x-large">
+					<h1>Oh crap. Dobbiamo ancora partire e gi&agrave; vuoi aggiornamenti?!</h1>
+					<h2>Comunque si, li caricheremo qui.</h2>
+					<h3><small>(NdR: Da leggere "Sharon li caricher&agrave;")</small></h3>
+				</div>
+			</div>
+			<div class="container" ng-if="slides.length > 0">
 				<div class="col-md-12" style="height:200px;">
 					<div slick
 						current-index="0"
@@ -179,39 +196,31 @@
 						</a>
 					</div>
 				</div>
-				<div class="col-md-12 slide-detail"
-					ng-if="slideSelected"
-					ng-style="getSlideBackground(slideSelected)">
-					<h4 class="date">{{slideSelected.date}}</h4>
-					<h3 class="title">{{slideSelected.title}}</h3>
-				</div>
-			</div>
-		</div>
-		<!--<div class="first-row"
-			ng-if="false"
-			class="font-size-x-large"
-			ng-style="getCurrentSlideBackground()"
-			ng-controller="SlidesController">
-			<div uib-carousel
-				active="active"
-				no-wrap="noWrap"
-				class="height-100">
-				<div uib-slide
-					class="height-100"
-					ng-repeat="slide in slides track by slide.id"
-					index="slides.indexOf(slide)">
-					<div ng-if="slide.videoId && slides.indexOf(slide) == active"
-						video-bg
-						video-id="slide.videoId"
-						class="height-100 width-100"></div>
-					<div class="container slides-background">
-						<h1>{{slide.title}}</h1>
-						<span ng-bind-html="slide.content">
-						</span>
+				<div class="col-md-12 slide-selected-container"
+					ng-show="slideSelected">
+					<div ng-style="getSlideBackground(slideSelected)"
+						class="col-md-12 slide-detail">
+						<div class="slide-commands">
+							<i class="fa pointer" ng-class="{'fa-eye': !showingText, 'fa-eye-slash': showingText}" ng-click="toggleText()"></i>
+							<i class="fa fa-remove pointer" ng-click="hideSlide()"></i>
+						</div>
+						<div ng-if="slideSelected.videoId"
+							video-id="slideSelected.videoId"
+							video-bg
+							class="height-100 width-100">
+						</div>
+						<h4 class="date"
+							ng-show="showingText">{{slideSelected.date}}</h4>
+						<h3 class="title"
+							ng-show="showingText">{{slideSelected.title}}</h3>
+						<div class="center font-size-x-large"
+							ng-show="showingText"
+							ng-bind-html="slideSelected.content">
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>-->
+		</div>
 		<div>
 			<div id="scrivici"
 				class="container">
@@ -234,9 +243,10 @@
 						<br>inserisci
 						<input type="email"
 								ng-model="postingInfo.email"
-								placeholder="mia@mail.it" />
+								placeholder="tua@mail.qualcosa" />
 						e clicca su
 						<span class="btn btn-default btn-lg"
+							ng-disabled="!isEmailValid(postingInfo.email)"
 							ng-click="doLogin(postingInfo.email)">Accedi</span>
 					</span>
 				</h2>
@@ -264,6 +274,7 @@
 				<div ng-if="loadingPosts"
 					class="col-md-12 col-xs-12 post center"
 					ng-class="{'bottom-ceruleo-dashed': groupedPosts.length>0}">
+					<h1>Le conversazioni piene d'amore stanno arrivando...</h1>
 					<i class="fa fa-spinner fa-spin"></i>
 				</div>
 				<div class="col-md-12 col-xs-12 post"
