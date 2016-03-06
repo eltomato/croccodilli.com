@@ -70,6 +70,10 @@ angular.module('croccodilli.controllers')
 		return $scope.postingInfo.isLogged;
 	};
 
+	$scope.showBack2Top = function() {
+		return $(window).scrollTop() >= $('#gallery').offset().top
+	};
+
 	facebookService.getPostingInfo().then(function(postingInfo) {
 		if(!postingInfo.isLogged) {
 			emailService.getPostingInfo().then(function(postingInfo) {

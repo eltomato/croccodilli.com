@@ -51,7 +51,11 @@
 				<i class="fa fa-power-off"></i>
 			</a>
 		</div>
-		<div class="first-row">
+		<div scroll-to="first-row" ng-show="showBack2Top()" class="back-2-top pointer">
+			<i class="fa fa-chevron-circle-up"></i>
+		</div>
+		<div id="first-row"
+			class="first-row">
 			<div ng-if="'(min-width: 992px)' | matchMedia"
 				video-bg
 				video-id="'QBa-e45o6eM'"
@@ -142,12 +146,12 @@
 					</div>
 				</div>
 				<div class="col-md-12 col-xs-12 button-row-header">
-					<div class="col-md-2 col-md-offset-4 col-xs-2 col-xs-offset-2">
-						<span class="btn btn-default btn-header col-md-12"
+					<div class="col-md-2 col-md-offset-4 col-xs-2 col-xs-offset-4">
+						<span class="btn btn-default btn-header col-md-12 col-xs-12"
 							scroll-to="scrivici">Scrivici</span>
 					</div>
 					<div class="col-md-2 col-xs-2">
-						<span class="btn btn-default btn-header col-md-12"
+						<span class="btn btn-default btn-header col-md-12 col-xs-12"
 							scroll-to="gallery">Gallery</span>
 					</div>
 				</div>
@@ -162,8 +166,8 @@
 					<i class="fa fa-spinner fa-spin"></i>
 				</div>
 			</div>
-			<div class="container" ng-if="slides.length == 0">
-				<div class="col-md-12 center font-size-x-large">
+			<div class="" ng-if="slides.length == 0">
+				<div class="width-100 center font-size-x-large still-here">
 					<h1>Oh crap. Dobbiamo ancora partire e gi&agrave; vuoi aggiornamenti?!</h1>
 					<h2>Comunque si, li caricheremo qui.</h2>
 					<h3><small>(NdR: Da leggere "Sharon li caricher&agrave;")</small></h3>
