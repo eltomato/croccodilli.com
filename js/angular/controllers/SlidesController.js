@@ -20,6 +20,17 @@ angular.module('croccodilli.controllers')
 		}
 	};
 
+	$scope.getSlidesBackground = function() {
+		if($scope.slides && $scope.slides.length == 0) {
+			return {
+				'background-image': 'url(../img/back-volo.jpg)',
+				'background-size': 'cover',
+				'background-position-x': 'center',
+				'background-position-y': 'center'
+			};
+		}
+	};
+
 	$scope.selectSlide = function(slide) {
 		$scope.slideSelected = null;
 		$timeout(function() {

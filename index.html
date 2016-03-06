@@ -159,6 +159,7 @@
 		</div>
 		<div id="gallery"
 			class="second-row"
+			ng-style="getSlidesBackground()"
 			ng-controller="SlidesController">
 			<div class="container" ng-if="loadingSlides">
 				<div class="col-md-12 center font-size-x-large">
@@ -176,6 +177,7 @@
 			<div class="container" ng-if="slides.length > 0">
 				<div class="col-md-12" style="height:200px;">
 					<div slick
+						infinite="false"
 						current-index="0"
 						slides-to-show="3"
 						slides-to-scroll="3"
