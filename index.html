@@ -61,7 +61,7 @@
 				video-id="'QBa-e45o6eM'"
 				class="height-100 width-100"></div>
 			<div class="container" ng-controller="CountdownController">
-				<div class="header col-md-12">
+				<div class="animated fadeInDown header col-md-12">
 					<h2>
 						<b>Australia 2016-2017</b>
 					</h2>
@@ -74,7 +74,7 @@
 					<h1>Siamo partiti! Stay tuned...</h1>
 				</div>
 				<div ng-if="!isCountdownOverdue()" class="col-md-12 countdown-container">
-					<div class="col-md-3 col-xs-3">
+					<div class="animated pulse col-md-3 col-xs-3">
 						<div class="countdown-text">
 							<span>{{days}} <span class="unit">Giorni</span></span>
 						</div>
@@ -91,7 +91,7 @@
 							animation="easeOutBounce"
 							animation-delay="0"></div>
 					</div>
-					<div class="col-md-3 col-xs-3">
+					<div class="animated pulse col-md-3 col-xs-3">
 						<div class="countdown-text">
 							<span>{{hours}} <span class="unit">Ore</span></span>
 						</div>
@@ -108,7 +108,7 @@
 							animation="easeOutBounce"
 							animation-delay="0"></div>
 					</div>
-					<div class="col-md-3 col-xs-3">
+					<div class="animated pulse col-md-3 col-xs-3">
 						<div class="countdown-text">
 							<span>{{minutes}} <span class="unit">Minuti</span></span>
 						</div>
@@ -126,7 +126,7 @@
 							animation="easeOutBounce"
 							animation-delay="0"></div>
 					</div>
-					<div class="col-md-3 col-xs-3">
+					<div class="animated pulse col-md-3 col-xs-3">
 						<div class="countdown-text">
 							<span>{{seconds}} <span class="unit">Secondi</span></span>
 						</div>
@@ -147,11 +147,11 @@
 				</div>
 				<div class="col-md-12 col-xs-12 button-row-header">
 					<div class="col-md-2 col-md-offset-4 col-xs-2 col-xs-offset-4">
-						<span class="btn btn-default btn-header col-md-12 col-xs-12"
+						<span class="animated fadeInLeft btn btn-default btn-header col-md-12 col-xs-12"
 							scroll-to="scrivici">Scrivici</span>
 					</div>
 					<div class="col-md-2 col-xs-2">
-						<span class="btn btn-default btn-header col-md-12 col-xs-12"
+						<span class="animated fadeInRight btn btn-default btn-header col-md-12 col-xs-12"
 							scroll-to="gallery">Gallery</span>
 					</div>
 				</div>
@@ -168,7 +168,7 @@
 				</div>
 			</div>
 			<div class="" ng-if="slides.length == 0">
-				<div class="width-100 center font-size-x-large still-here">
+				<div class="wow fadeInUp width-100 center font-size-x-large still-here">
 					<h1>Oh crap. Dobbiamo ancora partire e gi&agrave; vuoi aggiornamenti?!</h1>
 					<h2>Comunque si, li caricheremo qui.</h2>
 					<h3><small>(NdR: Da leggere "Sharon li caricher&agrave;")</small></h3>
@@ -229,9 +229,9 @@
 		</div>
 		<div>
 			<div id="scrivici"
-				class="container">
+				class="container wow fadeInDown">
 				<div class="col-md-12 do-post-header">
-					<h1>Manteniamo vivi i rapporti <i class="fa fa-heartbeat color-ceruleo"></i></h1>
+					<h1>Manteniamo vivi i rapporti <i class="wow bounceIn fa fa-heartbeat color-ceruleo" data-wow-duration="1.5s" data-wow-iteration="infinite"></i></h1>
 				</div>
 				<h2 class="col-md-12 not-logged-message"
 					ng-if="!postingInfo.isLogged">
@@ -283,9 +283,11 @@
 					<h1>Le conversazioni piene d'amore stanno arrivando...</h1>
 					<i class="fa fa-spinner fa-spin"></i>
 				</div>
-				<div class="col-md-12 col-xs-12 post"
+				<div class="wow col-md-12 col-xs-12 post"
 					ng-controller="SubPostController"
-					ng-class="{'bottom-ceruleo-dashed': !$last}"
+					ng-class="{'bottom-ceruleo-dashed': !$last,
+								'fadeInLeft': $odd,
+								'fadeInRight': $even}"
 					ng-repeat="groupedPost in groupedPosts">
 					<div class="col-md-1 col-xs-1 row">
 						<img ng-src="{{groupedPost.post.posterImageUrl || 'img/anonymous.png'}}"
@@ -359,7 +361,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer">
+		<div class="footer wow fadeInUp">
 			<div class="container">
 				<div class="col-md-12">
 					<hr class="full-width">
@@ -393,4 +395,8 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript" src="lib/wow.min.js"></script>
+	<script type="text/javascript">
+		new WOW().init();
+	</script>
 </html>
