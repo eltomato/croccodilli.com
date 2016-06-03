@@ -1039,6 +1039,7 @@ a {
 	text-decoration: none !important;
 }
 
+#header li a.active,
 #footer li a.active {
 	border-bottom: 2px solid #E5E5E5;
 }
