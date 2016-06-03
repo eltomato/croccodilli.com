@@ -1,0 +1,113 @@
+<div id="single" class="container">
+	<script type="text/javascript" src="js/doScrollToTop.js"></script>
+
+	<div class="social-share wow slideInRight">
+		<ul class="list-inline">
+			<li ng-if="!showsocial">
+				<a ng-click="showSocial()" ><i class="fa fa-share-alt pointer"></i></a>
+			</li>
+			<li ng-if="showsocial"
+				class="wow rotateIn">
+				<a socialshare
+					socialshare-provider="whatsapp"
+					socialshare-url='{{getFullUrl()}}'
+					socialshare-text="{{post.title || 'vai su CROCCODILLI.com'}}">
+					<i class="fa fa-whatsapp pointer visible-xs visible-sm"></i>
+				</a>
+			</li>
+			<li ng-if="showsocial"
+				class="wow rotateIn">
+				<a socialshare
+					socialshare-provider="facebook"
+					socialshare-url='{{getFullUrl()}}'
+					socialshare-text="{{post.title || 'CROCCODILLI.com'}}"
+					socialshare-description="{{post.content || ''}}"
+					socialshare-media="{{post.images.length > 0 ?
+											post.images[0] :
+											(getPostType(post) == 'title' ?
+												 getSiteUrl() + '/img/' + post.writer + '.jpg' :
+												 getSiteUrl()+'/favicon.png')}}"
+					socialshare-type="feed"
+					socialshare-via="120480261673611">
+					<i class="fa fa-facebook pointer"></i>
+				</a>
+			</li>
+			<li ng-if="showsocial"
+				class="wow rotateIn">
+				<a socialshare
+					socialshare-provider="twitter"
+					socialshare-url='{{getFullUrl()}}'
+					socialshare-text="{{post.title || 'CROCCODILLI.com'}}"
+					socialshare-media="{{post.images.length > 0 ?
+											post.images[0] :
+											(getPostType(post) == 'title' ?
+												 getSiteUrl() + '/img/' + post.writer + '.jpg' :
+												 getSiteUrl()+'/favicon.png')}}">
+					<i class="fa fa-twitter pointer"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="post wow slideInUp">
+		<div class="caption">
+			<span class="post-tag text-center"><i ng-repeat="hashtag in post.hashtags">{{hashtag}} </i></span>
+			<div ng-if="getPostType(post) == 'title'"
+				class="quote">
+				<i class="quote-left fa fa-quote-left"></i>
+				<i class="quote-right fa fa-quote-right"></i>
+
+				<div class="text-center">
+					<img ng-src="img/{{post.writer}}.jpg" class="avatar img-circle" />
+					<blockquote>
+						<p>{{post.title}}</p>
+						<footer>{{post.writer}}</footer>
+					</blockquote>
+				</div>
+			</div>
+			<div ng-if="getPostType(post) != 'title'"
+				class="header">
+				<h1>{{post.title}}</h1>
+			</div>
+			<div ng-if="getPostType(post) != 'title'"
+				class="text-center">
+				<h3>{{post.content}}</h3>
+			</div>
+		</div>
+
+		<div ng-if="post.images.length > 1"
+			class="wow slideInUp"
+			owl-carousel>
+			<img ng-repeat="image in post.images"
+				ng-src="{{image}}"
+				class="img-responsive" />
+		</div>
+		<img ng-if="post.images.length == 1"
+			ng-src="{{post.images[0]}}"
+			class="img-responsive wow slideInUp" />
+	</div>
+
+	<div ng-if="post.video"
+		class="media embed-responsive embed-responsive-16by9">
+		<div class="embed-responsive-item"
+			youtube-video
+			video-id="post.video"
+			player-vars="videoSettings"></div>
+	</div>
+
+	<div class="comments wow slideInUp">
+		<div id="disqus_thread"></div>
+		<script>
+			var disqus_config = function () {
+				this.page.url = window.location.href;
+				this.page.identifier = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+			};
+			(function() {
+				var d = document, s = d.createElement('script');
+				s.src = '//croccodilli.disqus.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+	</div>
+</div>

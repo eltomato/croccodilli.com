@@ -1,0 +1,126 @@
+<div id="posts"
+	class="container">
+	<script type="text/javascript" src="js/doScrollToTop.js"></script>
+
+	<!--<div ng-if="page.loading"-->
+	<!--	class="loader-inline-wrapper">-->
+	<!--	<div class="loader"></div>-->
+	<!--</div>-->
+	<section ng-repeat="post in posts | filter:searchText"
+		ng-class="{'col-md-8': isWide(post),
+					'col-md-4': !isWide(post)}"
+		class="wow slideInUp">
+		<div ng-switch on="getPostType(post)"
+			ng-click="navigateTo('/posts/' + post.postId)"
+			loading-on-click
+			ng-class="{'quote': getPostType(post) == 'title',
+						'post': getPostType(post) != 'title'}"
+			class="pointer">
+
+			<div ng-switch-when="title+content+images"
+				class="row full-height">
+				<div class="col-md-6 media full-height">
+					<div ng-if="post.images.length > 1"
+						owl-carousel>
+						<img ng-repeat="image in post.images"
+							ng-src="{{image}}"
+							class="img-responsive scale" data-scale="best-fill" data-align="center" />
+					</div>
+					<img ng-if="post.images.length == 1"
+						ng-src="{{post.images[0]}}"
+						image-loader
+						class="img-responsive scale" data-scale="best-fill" data-align="center" />
+				</div>
+				<div class="col-md-6 caption">
+					<span class="post-tag"><i ng-repeat="hashtag in post.hashtags">{{hashtag}} </i></span>
+					<a loading-on-click ng-href="#!/posts/{{post.postId}}" class="post-title hvr-underline-from-center">{{post.title}}</a>
+					<p class="post-description">{{post.content}}</p>
+					<span class="post-date">{{post.date | shortDateFormat}}</span>
+				</div>
+			</div>
+
+			<div ng-switch-when="title+images"
+				class="media with-title">
+				<div ng-if="post.images.length > 1"
+					owl-carousel>
+					<img ng-repeat="image in post.images"
+						ng-src="{{image}}"
+						class="img-responsive" />
+				</div>
+				<img ng-if="post.images.length == 1"
+					ng-src="{{post.images[0]}}"
+					image-loader
+					class="img-responsive" />
+			</div>
+			<div ng-switch-when="title+images"
+				class="caption text-center">
+				<span class="post-tag"><i ng-repeat="hashtag in post.hashtags">{{hashtag}} </i></span>
+				<a loading-on-click ng-href="#!/posts/{{post.postId}}" class="post-title hvr-underline-from-center">{{post.title}}</a>
+				<span class="post-date">{{post.date | shortDateFormat}}</span>
+			</div>
+
+			<div ng-switch-when="title+content"
+				class="caption">
+				<span class="post-tag"><i ng-repeat="hashtag in post.hashtags">{{hashtag}} </i></span>
+				<a loading-on-click ng-href="#!/posts/{{post.postId}}" class="post-title hvr-underline-from-center">{{post.title}}</a>
+				<p class="post-description">{{post.content}}</p>
+				<span class="post-date">{{post.date | shortDateFormat}}</span>
+			</div>
+
+			<div ng-switch-when="images"
+				class="media full-height">
+				<div ng-if="post.images.length > 1"
+					owl-carousel>
+					<img ng-repeat="image in post.images"
+						ng-src="{{image}}"
+						class="img-responsive" />
+				</div>
+				<img ng-if="post.images.length == 1"
+					ng-src="{{post.images[0]}}"
+					image-loader
+					class="img-responsive scale" data-scale="best-fill" data-align="center" />
+			</div>
+
+			<!--<div ng-switch-when="title"-->
+			<!--	class="quote">-->
+				<i ng-switch-when="title" class="quote-left fa fa-quote-left"></i>
+				<i ng-switch-when="title" class="quote-right fa fa-quote-right"></i>
+
+				<div ng-switch-when="title" class="text-center">
+					<img ng-src="img/{{post.writer}}.jpg" class="quote-face" />
+					<blockquote>
+						<p class="hvr-underline-from-center">{{post.title}}</p>
+						<footer>{{post.writer}}</footer>
+					</blockquote>
+					<span class="post-date">{{post.date | shortDateFormat}}</span>
+				</div>
+			<!--</div>-->
+
+			<div ng-switch-when="title+video"
+				class="media embed-responsive embed-responsive-16by9">
+				<div class="embed-responsive-item"
+					youtube-video
+					video-id="post.video"
+					player-vars="videoSettings"></div>
+			</div>
+
+			<div class="comments-angle fa-stack">
+				<span class="fa fa-comment-o fa-stack-2x"></span>
+				<span class="disqus-comment-count fa-stack-1x"
+					data-disqus-url="{{getFullUrl()}}/{{post.postId}}"
+					data-disqus-identifier="{{post.postId}}">0</span>
+			</div>
+
+		</div>
+	</section>
+
+	<div ng-if="canLoadMore" class="col-md-12">
+		<div class="text-center">
+			<a loading-on-click ng-click="getMorePosts()"
+				class="btn btn-ada-light load-more">Older posts</a>
+		</div>
+	</div>
+
+	<script id="dsq-count-scr" src="//croccodilli.disqus.com/count.js"></script>
+
+</div>
