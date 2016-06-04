@@ -41,5 +41,9 @@ angular.module('croccodilli.controllers')
 	$scope.scaleImages = function() {
 		$("img.scale").imageScale();
 	};
+	
+	$scope.shouldShowCountdown = function() {
+		return new Date() < new Date(1472122800319);	
+	};
 
 }]);

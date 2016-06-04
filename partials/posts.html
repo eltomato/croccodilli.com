@@ -6,6 +6,23 @@
 	<!--	class="loader-inline-wrapper">-->
 	<!--	<div class="loader"></div>-->
 	<!--</div>-->
+	
+	<div timer end-time="1472122800319"
+		ng-if="shouldShowCountdown()"
+		class="timer post wow slideInDown"
+		style="height: auto;">
+		<div class="caption text-center">
+			<!--<h3 class="text-center">-->
+			<!--	Si parte tra-->
+			<!--</h3>-->
+			<div class="col-md-3 col-xs-3 unit"><span class="counter-unit">{{days}}</span><span class="col-md-12 post-tag">GIORNI</span></div>
+			<div class="col-md-3 col-xs-3 unit"><span class="counter-unit">{{hours}}</span><span class="col-md-12 post-tag">ORE</span></div>
+			<div class="col-md-3 col-xs-3 unit"><span class="counter-unit">{{mminutes}}</span><span class="col-md-12 post-tag">MINUTI</span></div>
+			<div class="col-md-3 col-xs-3"><span class="counter-unit">{{sseconds}}</span><span class="col-md-12 post-tag">SECONDI</span></div>
+			<!--{{days}} days, {{hours}} hour{{hhoursS}}, {{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}-->
+		</div>
+	</div>
+	
 	<section ng-repeat="post in posts | filter:searchText"
 		ng-class="{'col-md-8': isWide(post),
 					'col-md-4': !isWide(post)}"

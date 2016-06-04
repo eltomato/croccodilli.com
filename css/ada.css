@@ -1095,6 +1095,29 @@ a {
 	height: 100%;
 }
 
+.timer .unit {
+	border-right: 2px solid #E5E5E5;
+}
+
+.timer .counter-unit {
+	font-size: 35px;
+}
+
+.timer .post-tag {
+	top: -20px;
+}
+
+@media (max-width: 767px) {
+	.timer .counter-unit {
+		font-size: 20px;
+	}
+	
+	.timer .post-tag {
+		font-size: 12px;
+		top: -13px;
+	}
+}
+
 @-webkit-keyframes heartbeat {
   0% {
     -moz-transform: rotate(45deg) scale(1);
