@@ -75,41 +75,30 @@
 	</section>
 
 	<section class="col-md-12 wow slideInUp">
-		<div class="post big">
-			<div id="map"></div>
+		<!--<div class="post big">-->
+		<!--	<div id="map"></div>-->
+		<!--</div>-->
+		<div class="post big"
+			map-lazy-load="https://maps.google.com/maps/api/js">
+			<div id="map"
+				ng-map
+				center="{{getMapCenter()}}"
+				zoom="8"
+				styles="{{styles}}">
+				<marker
+					ng-repeat="marker in markers"
+					position="{{marker}}"
+					label="{{$index+1}}tappa"
+					icon="img/marker.png"></marker>
+				<shape id="polyline"
+					name="polyline"
+					stroke-color="#e74c3c"
+					stroke-opacity="1.0"
+					stroke-weight="2"
+					path="{{markers}}" >
+		    	</shape>
+			</div>
 		</div>
 	</section>
-
-
-    <script>
-          var mapOptions = {
-              zoom: 11,
-
-              center: new google.maps.LatLng(45.416479, 10.990409),
-
-              // This is where you would paste any style found on Snazzy Maps.
-              styles: [{"featureType":"administrative.locality","elementType":"all","stylers":[{"hue":"#2c2e33"},{"saturation":7},{"lightness":19},{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"simplified"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":-2},{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"hue":"#e9ebed"},{"saturation":-90},{"lightness":-8},{"visibility":"simplified"}]},{"featureType":"transit","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":10},{"lightness":69},{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":-78},{"lightness":67},{"visibility":"simplified"}]}],
-
-              // Disable scrolling
-              //scrollwheel: false,
-              navigationControl: false,
-              mapTypeControl: false,
-              scaleControl: false,
-          };
-
-          // Get the HTML DOM element that will contain your map
-          // We are using a div with id="map" seen below in the <body>
-          var mapElement = document.getElementById('map');
-
-          // Create the Google Map using our element and options defined above
-          var map = new google.maps.Map(mapElement, mapOptions);
-
-          // Let's also add a marker while we're at it
-          var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(45.416479, 10.990409),
-              map: map,
-              title: '',
-              icon: 'img/marker.png'
-          });
-    </script>
+	
 </div>
