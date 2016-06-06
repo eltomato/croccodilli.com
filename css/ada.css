@@ -1107,6 +1107,12 @@ a {
 	top: -20px;
 }
 
+@media (max-width: 991px) {
+	div[ng-switch-when="title+content+images"] img.img-responsive.scale {
+		position: inherit !important;
+	}
+}
+
 @media (max-width: 767px) {
 	.timer .counter-unit {
 		font-size: 20px;
