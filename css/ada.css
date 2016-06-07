@@ -1107,6 +1107,10 @@ a {
 	top: -20px;
 }
 
+div.browser-safari {
+	display: block !important;
+}
+
 @media (max-width: 991px) {
 	div[ng-switch-when="title+content+images"] img.img-responsive.scale {
 		position: inherit !important;

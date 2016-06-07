@@ -15,7 +15,8 @@ var croccodilli = angular.module('croccodilli', [
 	'youtube-embed',
 	'720kb.socialshare',
 	'ngMap',
-	'timer'
+	'timer',
+	'ng.deviceDetector'
 ]);
 
 croccodilli.config(['$routeProvider', function($routeProvider) {
