@@ -9,7 +9,8 @@ angular.module('croccodilli.controllers')
 		title: 'Questo non è il post che state cercando.'
 	};
 	$scope.postShitHappens = {
-		title: 'S**t happens! Ricarica dai...'
+		title: 'S**t happens! Ricarica dai...',
+		writer: 'Tommaso'
 	};
 
 	if($routeParams.postId) {
