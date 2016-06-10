@@ -1111,6 +1111,11 @@ div.browser-safari {
 	display: block !important;
 }
 
+img.img-detail {
+	display: block;
+	margin: auto;
+}
+
 @media (max-width: 991px) {
 	div[ng-switch-when="title+content+images"] img.img-responsive.scale {
 		position: inherit !important;

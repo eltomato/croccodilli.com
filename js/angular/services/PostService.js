@@ -1,7 +1,7 @@
 
 angular.module('croccodilli.services')
 
-.service('postService', ['NO_POST_TO_FETCH', 'POST_ENDPOINT', '$http', function(NO_POST_TO_FETCH, POST_ENDPOINT, $http) {
+.service('postService', ['NO_POST_TO_FETCH', 'POST_ENDPOINT', '$http', 'deviceDetector', function(NO_POST_TO_FETCH, POST_ENDPOINT, $http, deviceDetector) {
 
 	var timesAskedForOlder = 0;
 
@@ -16,27 +16,52 @@ angular.module('croccodilli.services')
 
 	var me =  {
 		getLastPosts: function() {
-			return $http.get(POST_ENDPOINT, {
-				params: {
-					toFetch: NO_POST_TO_FETCH
-				}
-			});
+			if(deviceDetector.browser == 'safari') {
+				return $http.get('https://crossorigin.me/' + POST_ENDPOINT, {
+					params: {
+						toFetch: NO_POST_TO_FETCH
+					}
+				});
+			} else {
+				return $http.get(POST_ENDPOINT, {
+					params: {
+						toFetch: NO_POST_TO_FETCH
+					}
+				});
+			}
 		},
 		getOlderPosts: function() {
 			timesAskedForOlder++;
-			return $http.get(POST_ENDPOINT, {
-				params: {
-					toSkip: timesAskedForOlder * NO_POST_TO_FETCH,
-					toFetch: NO_POST_TO_FETCH
-				}
-			});
+			if(deviceDetector.browser == 'safari') {
+				return $http.get('https://crossorigin.me/' + POST_ENDPOINT, {
+					params: {
+						toSkip: timesAskedForOlder * NO_POST_TO_FETCH,
+						toFetch: NO_POST_TO_FETCH
+					}
+				});
+			} else {
+				return $http.get(POST_ENDPOINT, {
+					params: {
+						toSkip: timesAskedForOlder * NO_POST_TO_FETCH,
+						toFetch: NO_POST_TO_FETCH
+					}
+				});
+			}
 		},
 		getPost: function(postId) {
-			return $http.get(POST_ENDPOINT, {
-				params: {
-					postId: postId
-				}
-			});
+			if(deviceDetector.browser == 'safari') {
+				return $http.get('https://crossorigin.me/' + POST_ENDPOINT, {
+					params: {
+						postId: postId
+					}
+				});
+			} else {
+				return $http.get(POST_ENDPOINT, {
+					params: {
+						postId: postId
+					}
+				});
+			}
 		},
 		getPostType: function(post) {
 			var type = '';

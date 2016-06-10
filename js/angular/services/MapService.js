@@ -1,11 +1,15 @@
 
 angular.module('croccodilli.services')
 
-.service('mapService', ['MAP_ENDPOINT', '$http', function(MAP_ENDPOINT, $http) {
+.service('mapService', ['MAP_ENDPOINT', '$http', 'deviceDetector', function(MAP_ENDPOINT, $http, deviceDetector) {
 
 	var me =  {
 		getMarkers: function() {
-			return $http.get(MAP_ENDPOINT);
+			if(deviceDetector.browser == 'safari') {
+				return $http.get('https://crossorigin.me/' + MAP_ENDPOINT);
+			} else {
+				return $http.get(MAP_ENDPOINT);
+			}
 		},
 	};
 
