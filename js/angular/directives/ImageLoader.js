@@ -4,6 +4,7 @@ angular.module('croccodilli.directives')
 .directive('imageLoader', ['$compile', function($compile) {
 	return {
 		restrict: 'A',
+		scope: {},
 		link: function(scope, element, attrs) {
 			scope.image = {
 				loaded: false
@@ -13,9 +14,11 @@ angular.module('croccodilli.directives')
 				'<div class="loader"></div>'+
 			'</div>';
 			$compile(loadingDiv)(scope).insertAfter(element);
-			element.on('load', function() {
+			element.css('display', 'none');
+			element.load(function() {
 				scope.$apply(function() {
 					scope.image.loaded = true
+					element.css('display', 'block');
 				});
 			});
 		}

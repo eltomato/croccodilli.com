@@ -1,14 +1,18 @@
 
 angular.module('croccodilli.services')
 
-.service('postService', ['NO_POST_TO_FETCH', 'POST_ENDPOINT', '$http', 'deviceDetector', function(NO_POST_TO_FETCH, POST_ENDPOINT, $http, deviceDetector) {
+.service('postService', ['NO_POST_TO_FETCH', 'POST_ENDPOINT', 'MAKINGOF_ENDPOINT', '$http', 'deviceDetector', function(NO_POST_TO_FETCH, POST_ENDPOINT, MAKINGOF_ENDPOINT, $http, deviceDetector) {
 
 	var timesAskedForOlder = 0;
+	var timesAskedForOlderMakingOf = 0;
 
 	var hasImages = function(post) {
 		if(post) {
 			if(post.images) {
 				return post.images.length > 0;
+			}
+			if(post.image) {
+				return true;
 			}
 		}
 		return false;
@@ -30,6 +34,23 @@ angular.module('croccodilli.services')
 				});
 			}
 		},
+		getLastMakingOf: function() {
+			if(deviceDetector.browser == 'safari') {
+				return $http.get('https://crossorigin.me/' + MAKINGOF_ENDPOINT, {
+					params: {
+						toFetch: NO_POST_TO_FETCH,
+						makingOf: true
+					}
+				});
+			} else {
+				return $http.get(MAKINGOF_ENDPOINT, {
+					params: {
+						toFetch: NO_POST_TO_FETCH,
+						makingOf: true
+					}
+				});
+			}
+		},
 		getOlderPosts: function() {
 			timesAskedForOlder++;
 			if(deviceDetector.browser == 'safari') {
@@ -44,6 +65,26 @@ angular.module('croccodilli.services')
 					params: {
 						toSkip: timesAskedForOlder * NO_POST_TO_FETCH,
 						toFetch: NO_POST_TO_FETCH
+					}
+				});
+			}
+		},
+		getOlderMakingOf: function() {
+			timesAskedForOlderMakingOf++;
+			if(deviceDetector.browser == 'safari') {
+				return $http.get('https://crossorigin.me/' + MAKINGOF_ENDPOINT, {
+					params: {
+						toSkip: timesAskedForOlderMakingOf * NO_POST_TO_FETCH,
+						toFetch: NO_POST_TO_FETCH,
+						makingOf: true
+					}
+				});
+			} else {
+				return $http.get(MAKINGOF_ENDPOINT, {
+					params: {
+						toSkip: timesAskedForOlderMakingOf * NO_POST_TO_FETCH,
+						toFetch: NO_POST_TO_FETCH,
+						makingOf: true
 					}
 				});
 			}

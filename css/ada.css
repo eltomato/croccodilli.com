@@ -22,8 +22,13 @@
 }
 
 .loader-inline-wrapper {
-	height: 200px;
+	/*height: 200px;*/
+	height: 100%;
 	margin-bottom: 100px;
+}
+
+div[ng-switch-when] div.loader-inline-wrapper {
+    height: 200px;
 }
 
 .loader {
@@ -1319,4 +1324,12 @@ img.img-detail {
   left: 12px;
   width: 24px;
   height: 13px;
+}
+
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
 }

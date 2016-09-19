@@ -30,6 +30,9 @@ croccodilli.config(['$routeProvider', function($routeProvider) {
 	}).when('/spam', {
 		templateUrl: 'partials/spam.html',
 		controller: 'SpamController'
+	}).when('/makingof', {
+		templateUrl: 'partials/makingof.html',
+		controller: 'MakingOfController'
 	}).when('/about', {
 		templateUrl: 'partials/about.html',
 		controller: 'AboutController'
