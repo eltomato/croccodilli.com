@@ -1,0 +1,64 @@
+<div id="posts"
+	class="container">
+	
+	<script type="text/javascript" src="js/doScrollToTop.js"></script>
+
+	<div class="post wow slideInUp"
+		style="height: auto;">
+		<div class="caption text-center">
+			<div class="header">
+				<h1>Tutti i momenti degni di foto, nudi e crudi, senza possibilità di replica</h1>
+			</div>
+		</div>
+	</div>
+	
+	<section ng-repeat="post in posts | filter:searchText"
+		ng-class="{'col-md-8': isWide(post),
+					'col-md-4': !isWide(post)}"
+		class="wow slideInUp">
+		<div ng-switch on="getPostType(post)"
+			class="post">
+
+			<div ng-switch-when="images"
+				class="media full-height">
+				<img ng-src="{{post.image}}"
+					image-loader
+					ng-class="{'rotate90': post.rotate}"
+					class="img-responsive scale" data-scale="best-fill" data-align="center" />
+			</div>
+
+			<div ng-switch-when="video"
+				class="media embed-responsive embed-responsive-16by9">
+				<div class="embed-responsive-item"
+					youtube-video
+					video-id="post.video"
+					player-vars="videoSettings"></div>
+			</div>
+
+		</div>
+	</section>
+
+	<div ng-if="canLoadMore" class="col-md-12">
+		<div class="text-center">
+			<a loading-on-click ng-click="getMoreMakingOf()"
+				class="btn btn-ada-light load-more">Making of precedenti</a>
+		</div>
+	</div>
+	
+	<div class="comments wow slideInUp">
+		<div id="disqus_thread"></div>
+		<script>
+			var disqus_config = function () {
+				this.page.url = window.location.href;
+				this.page.identifier = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+			};
+			(function() {
+				var d = document, s = d.createElement('script');
+				s.src = '//croccodilli.disqus.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+	</div>
+</div>
