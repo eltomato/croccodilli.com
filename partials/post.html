@@ -83,6 +83,7 @@
 		</div>
 		<img ng-if="post.images.length == 1"
 			ng-src="{{post.images[0]}}"
+			ng-class="{'rotate90': post.rotate}"
 			class="img-responsive wow slideInUp img-detail" />
 	</div>
 
