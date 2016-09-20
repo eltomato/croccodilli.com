@@ -52,11 +52,13 @@
 						owl-carousel>
 						<img ng-repeat="image in post.images"
 							ng-src="{{image}}"
+							ng-class="{'rotate90': post.rotate}"
 							class="img-responsive scale" data-scale="best-fill" data-align="center" />
 					</div>
 					<img ng-if="post.images.length == 1"
 						ng-src="{{post.images[0]}}"
 						image-loader
+						ng-class="{'rotate90': post.rotate}"
 						class="img-responsive scale" data-scale="best-fill" data-align="center" />
 				</div>
 				<div class="col-md-6 caption">
@@ -73,11 +75,13 @@
 					owl-carousel>
 					<img ng-repeat="image in post.images"
 						ng-src="{{image}}"
+						ng-class="{'rotate90': post.rotate}"
 						class="img-responsive" />
 				</div>
 				<img ng-if="post.images.length == 1"
 					ng-src="{{post.images[0]}}"
 					image-loader
+					ng-class="{'rotate90': post.rotate}"
 					class="img-responsive" />
 			</div>
 			<div ng-switch-when="title+images"
@@ -101,11 +105,13 @@
 					owl-carousel>
 					<img ng-repeat="image in post.images"
 						ng-src="{{image}}"
+						ng-class="{'rotate90': post.rotate}"
 						class="img-responsive" />
 				</div>
 				<img ng-if="post.images.length == 1"
 					ng-src="{{post.images[0]}}"
 					image-loader
+					ng-class="{'rotate90': post.rotate}"
 					class="img-responsive scale" data-scale="best-fill" data-align="center" />
 			</div>
 
