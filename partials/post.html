@@ -79,6 +79,7 @@
 			owl-carousel>
 			<img ng-repeat="image in post.images"
 				ng-src="{{image}}"
+				ng-class="{'rotate90': post.rotate}"
 				class="img-responsive" />
 		</div>
 		<img ng-if="post.images.length == 1"
